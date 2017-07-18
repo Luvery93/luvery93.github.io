@@ -3,15 +3,15 @@ layout: post
 title:	"Moonlight, Geforce Shield 기능으로 원격에서 게임 실행하기"
 date:	2017-07-14 16:28:00 +0900
 categories: [Game]
-comment: true
+comments: true
 ---
 
 1. Host 설정
    * Geforece Experience Shield의 GAMESTREAM 옵션 실행
    * Chrome 원격 데스크톱을 통해 로그인한 상태 유지
    * Moonlight Port 설정
-     * TCP : 35043, 47984, 47989, 47995~47996, 48010
-     * UDP : 47998~48000
+     * TCP : 35043, 47984, 47989, 47995~47996
+     * UDP : 47998~48000, 48010
 2. Client 설정
    * JRE(JDK) 1.7.0 이상 설치 및 환경 변수 설정
    * [Moonlight PC](https://github.com/moonlight-stream/moonlight-pc/releases)에서 OS에 맞는 .jar 파일 다운로드 및 [Launch4j](http://launch4j.sourceforge.net/)를 통해 윈도우 실행프로그램으로 변경

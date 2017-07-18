@@ -3,7 +3,7 @@ layout: post
 title: "Git pages and Jekyll 연동"
 date:	2017-07-14 18:06 +0900
 categories: [Jekyll]
-comment: true
+comments: true
 ---
 
 1. Github에 git pages를 위해 repository를 생성합니다.

@@ -3,7 +3,7 @@ layout: post
 title: "OBS + NGINX를 통해 RTMP 동시 송출"
 date:	2017-07-17 14:42 +0900
 categories: [BroadCast]
-comment: true
+comments: true
 ---
 
 1. Open Broadcaster Software

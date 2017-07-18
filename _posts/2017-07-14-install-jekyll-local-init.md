@@ -3,7 +3,7 @@ layout: post
 title:	"Jekyll 초기 설정"
 date:	2017-07-14 15:35:00 +0900
 categories: [Jekyll]
-comment: true
+comments: true
 ---
 
 * [Jekyll](https://jekyllrb-ko.github.io/) 홈페이지에서 Windows를 공식지원하지 않고 있어서 [Windows 에서 Jekyll 실행](http://jekyll-windows.juthilo.com/)의 문서를 참고해서 설치를 진행하도록 합니다.

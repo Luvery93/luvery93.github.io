@@ -3,7 +3,7 @@ layout: post
 title:	"Windows 10 MS 계정(로컬 계정) 자동 로그인 설정"
 date:	2017-07-14 16:30:00 +0900
 categories: [Windows]
-comment: true
+comments: true
 ---
 
 * Windows 10 부터 MS 계정을 Windows 유저로 기본 설정 할 수 있습니다. MS 계정을 Windows 유저로 설정하면 MS에서 제공하는 클라우드 서비스 및 정품 인증 서비스가 MS 계정과 연동되는 이점이 있지만 로컬에서 컴퓨터를 이용 시에 매번 비밀번호를 입력해야 하는 불편함이 생깁니다. 따라서 로컬 접속은 비밀번호를 입력하지 않아도 자동 로그인이 되고, 원격 접속시에는 보안을 위해 비밀번호를 입력하도록 설정한다.

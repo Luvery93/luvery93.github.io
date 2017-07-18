@@ -3,7 +3,7 @@ layout: post
 title: "Jekyll Theme 적용"
 date:	2017-07-14 15:36:00 +0900
 categories: [Jekyll]
-comment: true
+comments: true
 ---
 
 1. 변경하고자 하는 Jekyll Theme 소스를 가져온다. 여기에서는 [renyuanz/leonids](https://github.com/renyuanz/leonids/)소스를 가져온다.
