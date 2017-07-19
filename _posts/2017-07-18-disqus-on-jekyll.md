@@ -23,10 +23,11 @@ comments: true
    ```
 
    * disqus 관련 레이아웃 파일은 아래와 같습니다.
+   * _config.yml 변수는 site.owner.disqus-shortname 형식으로 호출합니다.
 
-   ```html
+   ```javascript
    <script type="text/javascript">
-   	var disqus_shortname = '{{ site.owner.disqus-shortname }}';
+   	var disqus_shortname = '{_config.yml의 disqus-shortname}';
    	(function () {
    		var dsq = document.createElement('script');
    		dsq.type = 'text/javascript';
