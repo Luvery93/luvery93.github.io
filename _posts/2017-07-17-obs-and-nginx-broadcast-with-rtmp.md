@@ -48,8 +48,8 @@ comments: true
    * NGINX 는 HTTP, reverse proxy, IMAP/POP3 등 대부분의 웹 관련 서비스를 실행시킬 수 있는 무설치 웹 서버 데몬 프로그램으로 여기에서는 rtmp 서버로의 기능을 사용합니다.
    * RTMP(Real Time Messaging Protocol) : 1935포트를 사용하는 오디오, 비디오 및 기타 데이터를 인터넷을 통해 스트리밍할 떄 쓰이는 통신규약입니다.
    * [NGINX-win32](https://github.com/illuspas/nginx-rtmp-win32)모듈을 다운로드 받은 뒤 .\conf 아래의 nginx.conf를 아래와 같이 수정합니다.
-   * 트위치 스트림 키는 개인 채널 - 대시보드 - 설정 - 방송 암호 키에서 확인할 수 있습니다.
-   * 유투브 스트림 키는 유투브 동시 송출 설정 이 후 이 포스트에 수정하겠습니다.
+   * 트위치 스트림 키는 [개인 채널 - 대시보드 - 설정 - 방송 암호 키](https://www.twitch.tv/luvery93/dashboard/settings)에서 확인할 수 있습니다.
+   * 유투브 스트림 키는 [유투브 실시간 스트리밍](https://www.youtube.com/live_dashboard)에서 확인할 수 있습니다.
 
    ```shell
    worker_process	1;
