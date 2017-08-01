@@ -29,7 +29,7 @@ comments: true
 
 3. 시작옵션 설정
 
-   * 프레임에 직접적인 영향을 끼치는지는 불분명하나 우선 적용중이며 게임 도중 오류가 발생하면 -d3d9를 제외하고 나머지 옵션을 삭제해야 됩니다.
+   * 프레임에 직접적인 영향을 끼치는지는 불분명하나 우선 적용중이며 게임 도중 오류가 발생하면 -d3d9 옵션만 추가하고 나머지 옵션을 삭제해야 됩니다.
 
 
-   * -cpuPause 4 -thread 8 -nojoy -high -novid -refresh 144 -heapsize 1572864 -maxMem=8192 -maxVram=3072 -USEALLAVAILABLECORES -malloc=system -d3d9
+   * -cpuPause 4 -thread 8 -nojoy -high -novid -refresh 144 -heapsize 1572864 -maxMem=8192 -maxVram=3072 -USEALLAVAILABLECORES -malloc=system -d3d10 -sm4 -force-feature-level-11-0
