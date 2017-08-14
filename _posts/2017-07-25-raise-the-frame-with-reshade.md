@@ -14,9 +14,17 @@ comments: true
    * 2017-07-25 기준 최신 버전은 [3.0.8](https://reshade.me/downloads/ReShade_Setup_3.0.8.exe) 버전입니다.
    * 리쉐이드 적용
      1. 다운로드 받은 ReShade_Setup_3.0.8.exe 를 실행 합니다.
-     2. Select game을 선택한 뒤 PUBG경로 C:\Program Files (x86)\Steam\steamapps\common\PUBG\TslGame\Binaries\Win64\TslGame.exe 를 선택합니다.
+
+     2. Select game을 선택한 뒤 PUBG 설치 경로를 선택합니다.
+
+        ```
+        C:\Program Files (x86)\Steam\steamapps\common\PUBG\TslGame\Binaries\Win64\TslGame.exe
+        ```
+
      3. Direct3D 10+을 선택합니다.
+
      4. 팝업창의 설치하고자 하는 effect를 전부 해제 한뒤 **AdaptiveSharpen.fx, Technicolor2.fx**만 선택합니다. 각각 선명도, 색감에 관한 효과입니다.
+
      5. Done 이라는 글자가 보이면 패치가 완료된 것이므로 프로그램을 종료합니다.
 
 2. Pugb 설정
@@ -32,4 +40,8 @@ comments: true
    * 프레임에 직접적인 영향을 끼치는지는 불분명하나 우선 적용중이며 게임 도중 오류가 발생하면 -d3d9 옵션만 추가하고 나머지 옵션을 삭제해야 됩니다.
 
 
-   * -cpuPause 4 -thread 8 -nojoy -high -novid -refresh 144 -heapsize 1572864 -maxMem=8192 -maxVram=3072 -USEALLAVAILABLECORES -malloc=system -d3d10 -sm4 -force-feature-level-11-0
+     ```
+     -cpuPause 4 -thread 8 -nojoy -high -novid -refresh 144 -heapsize 1572864 -maxMem=8192 -maxVram=3072 -USEALLAVAILABLECORES -malloc=system -d3d10 -sm4 -force-feature-level-11-0
+     ```
+
+     ​
