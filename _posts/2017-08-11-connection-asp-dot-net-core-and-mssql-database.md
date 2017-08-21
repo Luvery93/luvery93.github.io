@@ -11,14 +11,11 @@ comments: true
 ### 사전 준비
 
 * 이 포스트는 2017-08-11, ASP.NET Core 1.1 기준으로 작성되었습니다.
-
 * Windows, Visual Studio 2017 환경에서 작성되었습니다.
-
 * 이 포스트는 [asp.net core docs - ASP.NET Core - Existing Database](https://docs.microsoft.com/ko-kr/ef/core/get-started/aspnetcore/existing-db)를 기준으로 작성되었습니다.
 
-  ​	1. [.NET SDK](https://www.microsoft.com/net/core#windowscmd) 를 설치합니다.
-
-  ​	2. [Visual Studio][https://www.visualstudio.com/thank-you-downloading-visual-studio/?sku=community&rel=15]를 설치합니다.
+  1. [.NET SDK](https://www.microsoft.com/net/core#windowscmd)가 설치되어 있지 않는 경우 설치합니다.
+  2. [Visual Studio](https://www.visualstudio.com/thank-you-downloading-visual-studio/?sku=community&rel=15)가 설치되어 있지 않는 경우 설치합니다.
 
 ---
 
