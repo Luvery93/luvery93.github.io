@@ -59,14 +59,30 @@ comments: true
 
 2. Pugb 설정
 
-   * 게임 내에서 shift+f2 키를 통해 리쉐이드 오버레이에 접근합니다.
-   * Continue를 누른 뒤, + 버튼을 누르고 새 프로파일 이름을 입력하여 작성합니다.
-   * Continue를 누른 뒤, 적용하고자 하는 효과인 **AdaptiveSharpen.fx, Techinicolor2.fx**에 단축키를 설정합니다. 그 후 해당 옵션을 단축키를 통해 활성화 합니다.
-   * Continue를 누른 뒤, 두 효과의 적용 강도를 조절합니다.
+   1. 게임 내에서 shift+f2 키를 통해 리쉐이드 오버레이에 접근합니다.
+
+      ![11]({{ site.url }}/img/2017-07-25-raise-the-frame-with-reshade/11.png)
+
+   2. Continue를 누른 뒤, + 버튼을 누르고 새 프로파일 이름을 입력하여 작성합니다.
+
+      ![12]({{ site.url }}/img/2017-07-25-raise-the-frame-with-reshade/12.png)
+
+   3. Continue를 누른 뒤, 적용하고자 하는 효과인 **AdaptiveSharpen.fx, Techinicolor2.fx**에 단축키를 설정합니다. 그 후 해당 옵션을 단축키를 통해 활성화 합니다.
+
+      ![13]({{ site.url }}/img/2017-07-25-raise-the-frame-with-reshade/13.png)
+
+   4. Finish를 누른 뒤, 두 효과의 적용 강도를 조절합니다.
+
+      ![14]({{ site.url }}/img/2017-07-25-raise-the-frame-with-reshade/14.png)
+
+   5. FPS는 Settigns 의 Show FPS를 활성화합니다.
+
+     ![15]({{ site.url }}/img/2017-07-25-raise-the-frame-with-reshade/15.png)
+
    * 지속되는 PUBG 최적화 패치로 개인 사양에 맞게 PUBG 인게임 옵션을 조정합니다.
      * i7-6700k(4.5 o.c), gtx970 super jetstream, 16 gb ram
-     * 화면스케일: 90
-     * 안티-울트라, 텍스처-높음, 나머지-매우낮음
+
+       ![16]({{ site.url }}/img/2017-07-25-raise-the-frame-with-reshade/16.png)
 
 3. 시작옵션 설정
 
@@ -76,16 +92,20 @@ comments: true
    -cpuPause 4 -thread 8 -nojoy -high -novid -refresh 144 -heapsize 1572864 -maxMem=15360 -maxVram=3072 -USEALLAVAILABLECORES -malloc=system
    ```
 
-   * cpuPause : CPU 물리 코어 갯수
-   * thread : CPU 논리 코어 갯수
-   * nojoy : 패드 리소스 제거
-   * high : cpu 사용 우선 순의 높음 설정
-   * novid : 동영상 및 로고 무시
-   * refresh : 모니터 화면 주사율에 맞춰서 작성
-   * heapsize : 3GB 이상 = 1572864
-   * maxMem : 최대 동적 메모리 설정, 전체 메모리 - 1GB 설정
-     * 16GB : (16-1) * 1024 = 15360
-   * maxVram : 그래픽 카드 최대 동적 메모리 설정, 전체 메모리 - 0.5GB 설정
-     * GTX 970 : 3.5GB + 0.5GB 의 vram을 지니므로 (3.5 - 0.5) * 1024 = 3072
-   * USEALLAVAILABLECORES : 모든 코어를 프로세스에 할당
-   * malloc=system : 동적 메모리 할당을 시스템에서 조정
+   ​		![17]({{ site.url }}/img/2017-07-25-raise-the-frame-with-reshade/17.png)
+
+​		![18]({{ site.url }}/img/2017-07-25-raise-the-frame-with-reshade/18.png)
+
+* cpuPause : CPU 물리 코어 갯수
+* thread : CPU 논리 코어 갯수
+* nojoy : 패드 리소스 제거
+* high : cpu 사용 우선 순의 높음 설정
+* novid : 동영상 및 로고 무시
+* refresh : 모니터 화면 주사율에 맞춰서 작성
+* heapsize : 3GB 이상 = 1572864
+* maxMem : 최대 동적 메모리 설정, 전체 메모리 - 1GB 설정
+  * 16GB : (16-1) * 1024 = 15360
+* maxVram : 그래픽 카드 최대 동적 메모리 설정, 전체 메모리 - 0.5GB 설정
+  * GTX 970 : 3.5GB + 0.5GB 의 vram을 지니므로 (3.5 - 0.5) * 1024 = 3072
+* USEALLAVAILABLECORES : 모든 코어를 프로세스에 할당
+* malloc=system : 동적 메모리 할당을 시스템에서 조정
