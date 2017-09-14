@@ -31,7 +31,7 @@ comments: true
 
      * 재생 : VoiceMeeter Input ( 기본 장치 ), 스피커( 기본 통신 장치 )
 
-     ![1-1]({{ site.url }}/img//2017-08-08-voicemeeter-banana-and-virtual-audio-cable-setting/1-1.PNG)
+       ![1-1]({{ site.url }}/img//2017-08-08-voicemeeter-banana-and-virtual-audio-cable-setting/1-1.PNG)
 
      * 녹음 : CABLE Output( 기본 장치 )
 

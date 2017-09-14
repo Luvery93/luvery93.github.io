@@ -21,17 +21,18 @@ comments: true
 
      ![1]({{ site.url }}/img/2017-08-31-overclocking-i7-6700k-and-ram/1.png)
 
-
-
    * Ai Tweaker 탭을 선택한 뒤, DRAM Frequency, DRAM Timing Control, DRAM Voltage를 변경하여 오버를 진행합니다.
 
      * DRAM Frequency : DDR4-3000MHz
+
      * DRAM Timing Control
-     * DRAM CAS# Latency : 17
-     * DRAM RAS# to CAS# Delay : 17
-     * DRAM RAS# ACT Time : 36
-     * DRAM Command Rate : 1
-     * DRAM Voltage : 1.350
+
+       * DRAM CAS# Latency : 17
+       * DRAM RAS# to CAS# Delay : 17
+       * DRAM RAS# ACT Time : 36
+       * DRAM Command Rate : 1
+
+     * DRAM Voltage : 1.35
 
        ![2]({{ site.url }}/img/2017-08-31-overclocking-i7-6700k-and-ram/2.png)
 
@@ -118,4 +119,3 @@ comments: true
    * Linx 테스트 이후 전체 테스트 화면입니다.
 
      ![20]({{ site.url }}/img/2017-08-31-overclocking-i7-6700k-and-ram/20.png)
-
