@@ -38,35 +38,33 @@ comments: true
 
        ![3]({{ site.url }}/img/2017-08-08-voicemeeter-banana-and-virtual-audio-cable-setting/3.png)
 
-     * 좌측 HARDWARE INPUT 1에 물리마이크를 설정합니다. 물리 마이크의 경우 VoiceMeeter Input VAIO에 출력되야 하므로 B2(혹은 B1)를 체크합니다.
+     * 좌측 HARDWARE INPUT 1에 물리마이크를 설정합니다. 물리 마이크의 경우 VoiceMeeter Output에 출력되려면 B1, VoiceMeeter Aux Output에 출력되려면 B2로 설정합니다.
 
-       ![4]({{ site.url }}/img/2017-08-08-voicemeeter-banana-and-virtual-audio-cable-setting/5.png)
+       ![4]({{ site.url }}/img/2017-08-08-voicemeeter-banana-and-virtual-audio-cable-setting/4.png)
 
-     * 좌측 상단 HARDWARE INPUT 2에 CABLE Output을 설정합니다. CABLE Output(VB-Audio Virtual)은 스피커로 듣기 위해서는 A1, A2(물리 스피커)에 체크합니다. 그 뒤 CABLE Output을 물리 마이크 처럼 시스템에 믹스하기 위해 B1(혹은 B2)를 체크합니다.
+     * 좌측 상단 HARDWARE INPUT 2에 CABLE Output을 설정합니다. CABLE Output(VB-Audio Virtual)은을 자기 자신만 스피커로 듣기 위해서는 A1, A2(물리 스피커)에 체크합니다.
 
-       * 자기 자신만 CABLE Output으로 들어오는 소리를 듣는 경우, Voicemeeter VAIO에 CABLE Output의 B1(혹은 B2)를 체크하지 않습니다.
+       ![5]({{ site.url }}/img/2017-08-08-voicemeeter-banana-and-virtual-audio-cable-setting/5.PNG)
 
-       ![5]({{ site.url }}/img/2017-08-08-voicemeeter-banana-and-virtual-audio-cable-setting/6.PNG)
+     * 좌측 상단 HARDWARE INPUT 2에 CABLE Output을 물리 마이크 처럼 시스템에 믹스하기 위해 B1(VoiceMeeter Output), 혹은 B2(VoiceMeeter Aux Output)를 설정합니다.
 
-       * 물리 마이크처럼 Cable Output으로 들어오는 소리를 시스템 사운드에 믹스하는 경우, Voicemeeter VAIO에 CABLE Output의 B1(혹은 B2)를 체크합니다.
-
-       ![6]({{ site.url }}/img/2017-08-08-voicemeeter-banana-and-virtual-audio-cable-setting/7.png)
+       ![6]({{ site.url }}/img/2017-08-08-voicemeeter-banana-and-virtual-audio-cable-setting/6.png)
 
      * 설정을 저장하기 위해 우측 상단의 메뉴를 클릭하여 Restart Audio Engine을 실행 시킨 뒤, 윈도우 시작시마다 설정 되도록 System Tray(Run at Startup)에 체크해줍니다.
 
-       ![7]({{ site.url }}/img/2017-08-08-voicemeeter-banana-and-virtual-audio-cable-setting/8.png)
+       ![7]({{ site.url }}/img/2017-08-08-voicemeeter-banana-and-virtual-audio-cable-setting/7.png)
 
    * 기타 음원 관련 프로그램 설정을 진행합니다.
 
-     * 방송 송출 프로그램은 모든 오디오 장치를 Disabled 한 다음에 마이크/보조 오디오 장치를 VoiceMeeter Aux Output(VB-Audio VoiceMeeter AUX VAIO)로 설정합니다.
+     * 방송 송출 프로그램은 모든 오디오 장치를 Disabled 한 다음에 마이크/보조 오디오 장치를 B1인 경우 VoiceMeeter Output(VB-Audio VoiceMeeter VAIO), B2인 경우 VoiceMeeter Aux Output(VB-Audio VoiceMeeter AUX VAIO)로 설정합니다.
 
-       ![9]({{ site.url }}/img/2017-08-08-voicemeeter-banana-and-virtual-audio-cable-setting/9.png)
+       ![8]({{ site.url }}/img/2017-08-08-voicemeeter-banana-and-virtual-audio-cable-setting/8.png)
 
      * 음성 채팅 프로그램은 출력 장치를 CABLE Input(VA-Audio Virtual Cabel)로 입력 장치를 물리마이크로 설정합니다.
 
-       ![10]({{ site.url }}/img/2017-08-08-voicemeeter-banana-and-virtual-audio-cable-setting/10.png)
+       ![9]({{ site.url }}/img/2017-08-08-voicemeeter-banana-and-virtual-audio-cable-setting/9.png)
 
-       ![11]({{ site.url }}/img/2017-08-08-voicemeeter-banana-and-virtual-audio-cable-setting/11.png)
+       ![10]({{ site.url }}/img/2017-08-08-voicemeeter-banana-and-virtual-audio-cable-setting/10.png)
 
      ​
 
