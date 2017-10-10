@@ -44,11 +44,11 @@ comments: true
 
      * 좌측 상단 HARDWARE INPUT 2에 CABLE Output을 설정합니다. CABLE Output(VB-Audio Virtual)은을 자기 자신만 스피커로 듣기 위해서는 A1, A2(물리 스피커)에 체크합니다.
 
-       ![5]({{ site.url }}/img/2017-08-08-voicemeeter-banana-and-virtual-audio-cable-setting/5.PNG)
+       ![5]({{ site.url }}/img/2017-08-08-voicemeeter-banana-and-virtual-audio-cable-setting/5.png)
 
      * 좌측 상단 HARDWARE INPUT 2에 CABLE Output을 물리 마이크 처럼 시스템에 믹스하기 위해 B1(VoiceMeeter Output), 혹은 B2(VoiceMeeter Aux Output)를 설정합니다.
 
-       ![6]({{ site.url }}/img/2017-08-08-voicemeeter-banana-and-virtual-audio-cable-setting/6.png)
+       ![6]({{ site.url }}/img/2017-08-08-voicemeeter-banana-and-virtual-audio-cable-setting/6.PNG)
 
      * 설정을 저장하기 위해 우측 상단의 메뉴를 클릭하여 Restart Audio Engine을 실행 시킨 뒤, 윈도우 시작시마다 설정 되도록 System Tray(Run at Startup)에 체크해줍니다.
 
