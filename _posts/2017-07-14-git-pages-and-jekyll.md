@@ -23,10 +23,20 @@ comments: true
    $ git clone https://github.com/Luvery93/luvery93.github.io.git
    $ cd luvery93.github.io
    ```
-   * git 프로젝트가 있고 수정을 반영한다면 CMD 창에서 아래를 입력합니다.
+   * git 프로젝트가 있고 수정을 반영한다면 아래와 같이 진행합니다.
 
    ```
    $ git add .
-   $ git commit -m "2017-07-14 post"
+   $ git commit -m "..."
    $ git push origin master
    ```
+   * push 까지 된 commit을 취소하고 수정 사항을 반영한다면 아래와 같이 진행합니다.
+
+   ```
+   $ git reset --hard HEAD~1
+   $ git add .
+   $ git commit "..."
+   $ git push origin +master
+   ```
+
+   ​
