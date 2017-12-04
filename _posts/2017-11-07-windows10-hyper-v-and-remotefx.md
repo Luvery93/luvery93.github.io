@@ -60,8 +60,6 @@ comments: true
 
   ![21]({{ site.url }}/img/2017-11-07-windows10-hyper-v-and-remotefx/21.png)
 
-  ![22]({{ site.url }}/img/2017-11-07-windows10-hyper-v-and-remotefx/22.png)
-
 * 네트워크 사용을 위해 가상 스위치를 생성하고 가상 컴퓨터에 설정합니다.
 
   ![22]({{ site.url }}/img/2017-11-07-windows10-hyper-v-and-remotefx/22.png)
