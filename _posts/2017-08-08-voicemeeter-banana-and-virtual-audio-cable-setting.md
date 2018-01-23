@@ -22,9 +22,9 @@ comments: true
 
    * Voicemeeter Banana 와 Virtual Audio Cables를 설치 후 재부팅합니다.
 
-     * VoiceMeeter Input - 기본 시스템 사운드, VoiceMeeter Output, VoiceMeeter Aux Output 포함
-     * VoiceMeeter Output - 물리 마이크 입력, 음성 채팅용 마이크로 설정
-     * VoiceMeeter Aux Output - 물리 마이크 입력, 보이스 채팅 입력, 방송 송출용 마이크로 설정
+     * VoiceMeeter Input - 기본 시스템 재생장치, VoiceMeeter Output, VoiceMeeter Aux Output 포함
+     * VoiceMeeter Output - 물리 마이크 입력, 기본 시스템 녹음장치
+     * VoiceMeeter Aux Output - 물리 마이크 입력, 방송 송출용 마이크로 설정
 
    * 재부팅 후 시스템 트레이의 오디오 설정을 아래와 같이 변경합니다.
 
@@ -46,7 +46,7 @@ comments: true
 
        ![4]({{ site.url }}/img/2017-08-08-voicemeeter-banana-and-virtual-audio-cable-setting/4.png)
 
-     * 좌측 상단 HARDWARE INPUT 2에 CABLE Output을 설정합니다. CABLE Output(VB-Audio Virtual)은기본 시스템 사운드를 VoiceMeeter Input에 믹스 여부에 대한 관리를 할 수 있습니다. 기본적으로 시스템 사운드 이므로 물리 스피커(A1, A2)에 체크합니다.
+     * 좌측 상단 HARDWARE INPUT 2에 CABLE Output을 설정합니다. CABLE Output(VB-Audio Virtual)을 따로 설정하여 기본 시스템 사운드(VoiceMeeter Input)에 합치거나 제외시키거나 하는 설정을 선택할 수 있습니다. 기본적으로 시스템 사운드 이므로 물리 스피커(A1, A2)에 체크합니다.
 
        * 예를 들어 음성채팅 대화내용을 방송용 마이크에 섞이지 않기 위해서는 B2(VoiceMeeter Aux Output)를 체크 해제합니다.
 
