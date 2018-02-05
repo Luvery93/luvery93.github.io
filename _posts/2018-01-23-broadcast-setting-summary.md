@@ -2,7 +2,7 @@
 layout: post
 title: "원컴방송 다중송출 설정 정리"
 date: 2018-01-23 10:09 +0900
-categories: [Broadcast]
+categories: [BroadCast]
 comments: true
 ---
 
