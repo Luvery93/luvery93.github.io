@@ -3,10 +3,10 @@
 # Site wide configuration
 ####################################
 #
-title: Youngmin's blog
+title: 루베리 블로그
 email: youngminjun93@gmail.com
-description: Youngmin's blog
-url: https://luvery93.github.io/
+description: 루베리 블로그
+url: https://luvery93.github.io
 
 #
 ###################################
@@ -32,10 +32,10 @@ kramdown:
 ####################################
 #
 owner:
-  name: Youngmin
-  avatar: avatar.jpg
-  job: "학생/컴퓨터공학"
-  bio: "개인 기록용 노트"
+  name: 루베리
+  avatar: avatar.png
+  job: "개발자/스트리머"
+  bio: "루베리 개인 저장소"
   email: youngminjun93@gmail.com
   disqus-shortname: luvery93-github-io
   twitter: #username
