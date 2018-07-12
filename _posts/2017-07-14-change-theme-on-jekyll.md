@@ -2,7 +2,7 @@
 layout: post
 title: "Jekyll Theme 적용"
 date:	2017-07-14 15:36:00 +0900
-categories: [Jekyll]
+categories: [Blog]
 comments: true
 ---
 

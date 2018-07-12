@@ -2,7 +2,7 @@
 layout: post
 title: "Git History 되돌려서 Commit 정리하기"
 date: 2017-10-24 16:54:00 +0900
-categories: [Jekyll]
+categories: [Blog]
 comments: true
 ---
 

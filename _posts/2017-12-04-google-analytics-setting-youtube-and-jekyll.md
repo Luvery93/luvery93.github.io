@@ -2,7 +2,7 @@
 layout: post
 title: "Google Analytics - 구글 웹로그 분석"
 date: 2017-12-04 16:22 +0900
-categories: [Jekyll]
+categories: [Blog]
 comments: true
 ---
 

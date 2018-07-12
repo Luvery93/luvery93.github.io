@@ -2,7 +2,7 @@
 layout: post
 title:	"Jekyll 초기 설정"
 date:	2017-07-14 15:35:00 +0900
-categories: [Jekyll]
+categories: [Blog]
 comments: true
 ---
 

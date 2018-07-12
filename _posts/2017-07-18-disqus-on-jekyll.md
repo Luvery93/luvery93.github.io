@@ -2,7 +2,7 @@
 layout:	post
 title:	"Jekyll에 disqus 연동하여 댓글 시스템 구축"
 date:	2017-07-18 11:22 +0900
-categories: [Jekyll]
+categories: [Blog]
 comments: true
 ---
 

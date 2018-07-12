@@ -2,7 +2,7 @@
 layout: post
 title: "Git pages and Jekyll 연동"
 date:	2017-07-14 18:06 +0900
-categories: [Jekyll]
+categories: [Blog]
 comments: true
 ---
 

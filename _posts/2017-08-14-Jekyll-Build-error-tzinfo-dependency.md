@@ -2,7 +2,7 @@
 layout: post
 title: "Jekyll 빌드 오류 - tzinfo 종속성"
 date: 2017-08-14 17:06 +09:00
-categories: [Jekyll]
+categories: [Blog]
 comments: true
 ---
 
