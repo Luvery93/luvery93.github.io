@@ -15,6 +15,8 @@ comments: true
 
    * Ruby 2.4.0 그리고 그 이상 버전에서는 Ruby Devkit이 설치 이후에 자동으로 진행됩니다. 1, 2, 3 순서대로 설치를 진행합니다.
 
+     ![1]({{ site.url }}/img/2017-07-14-install-jekyll-local-init/1.png)
+
 2. Jekyll 를 설치합니다.
 
    * CMD 창에서 아래를 입력합니다.
@@ -23,6 +25,8 @@ comments: true
    > gem install jekyll
    ```
 
+   ![2]({{ site.url }}/img/2017-07-14-install-jekyll-local-init/2.png)
+
 3. syntax highlighter를 위해 Rouge를 설치합니다. ( 필수 아님 )
 
    * CMD 창에서 아래를 입력합니다.
@@ -30,6 +34,8 @@ comments: true
    ```
    > gem install rouge
    ```
+
+   ![3]({{ site.url }}/img/2017-07-14-install-jekyll-local-init/3.png)
 
 4. syntax highlighting를 위해 pygments을 설치합니다. ( 필수 아님 )
 
@@ -40,12 +46,16 @@ comments: true
    C:\Develop\python36\Scripts;C:\Delvelop\python27\Scripts;
    ```
 
+   ![4]({{ site.url }}/img/2017-07-14-install-jekyll-local-init/4.png)
+
    * 파이썬2를 통해 pygments를 설치합니다.
    * CMD 창에 아래를 입력합니다.
 
    ```
    > pip2 install Pygments
    ```
+
+   ![5]({{ site.url }}/img/2017-07-14-install-jekyll-local-init/5.png)
 
 5. wdm을 설치합니다.
 
@@ -55,6 +65,8 @@ comments: true
    > gem install wdm
    ```
 
+   ![6]({{ site.url }}/img/2017-07-14-install-jekyll-local-init/6.png)
+
 6. bundler 를 설치합니다.
 
    * CMD 창에서 아래를 입력합니다.
@@ -62,6 +74,8 @@ comments: true
    ```
    > gem install bundler
    ```
+
+   ![7]({{ site.url }}/img/2017-07-14-install-jekyll-local-init/7.png)
 
 7. 로컬 프로젝트 경로를 생성하고 그 아래 jekyll 프로젝트를 생성합니다.
 
@@ -81,3 +95,5 @@ comments: true
    > jekyll build [--watch | -w]
    > jekyll serve [--watch | -w]
    ```
+
+   ![8]({{ site.url }}/img/2017-07-14-install-jekyll-local-init/8.png)
