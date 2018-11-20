@@ -2,7 +2,7 @@
 layout: post
 title: SW Expert Academy Computial Thinking
 date: 2018-11-02 18:06 +0900
-categoreis: [Computer Science]
+categories: [Computer-Science]
 comments: true
 ---
 
