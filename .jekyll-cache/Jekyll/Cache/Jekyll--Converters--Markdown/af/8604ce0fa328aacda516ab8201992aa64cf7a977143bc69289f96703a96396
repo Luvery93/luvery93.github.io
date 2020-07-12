@@ -1,0 +1,54 @@
+I"H
+<ol>
+  <li>
+    <p>Windows Server  2008이상 부터는 서버를 웹서버와 같이 구동하기 위해 역할과 기능을 추가해야 합니다. 그 중 웹서버(IIS)는 서버 역할의 <strong>웹 서버(IIS)</strong>를 설치합니다.</p>
+
+    <p><img src="http://localhost:4000/img/2017-10-10-windows-server-2008r2-webserver-setting/1.png" alt="1" /></p>
+  </li>
+  <li>
+    <p>소개 페이지를 지나 역할 서비스에 사용할 기능을 선택합니다.</p>
+
+    <p><img src="http://localhost:4000/img/2017-10-10-windows-server-2008r2-webserver-setting/2.png" alt="2" /></p>
+
+    <p><img src="http://localhost:4000/img/2017-10-10-windows-server-2008r2-webserver-setting/3.png" alt="3" /></p>
+  </li>
+  <li>
+    <p>선택한 역할 서비스를 확인하고 설치를 시작합니다.</p>
+
+    <p><img src="http://localhost:4000/img/2017-10-10-windows-server-2008r2-webserver-setting/4.png" alt="4" /></p>
+  </li>
+  <li>
+    <p>역할 서비스 설치 이후에 결과를 확인합니다.</p>
+
+    <p><img src="http://localhost:4000/img/2017-10-10-windows-server-2008r2-webserver-setting/5.png" alt="5" /></p>
+
+    <p><img src="http://localhost:4000/img/2017-10-10-windows-server-2008r2-webserver-setting/6.png" alt="6" /></p>
+  </li>
+  <li>
+    <p>.Net Framework, SMTP, WCF 등 필요한 기능을 선택합니다.</p>
+
+    <p><img src="http://localhost:4000/img/2017-10-10-windows-server-2008r2-webserver-setting/7.png" alt="7" /></p>
+
+    <p><img src="http://localhost:4000/img/2017-10-10-windows-server-2008r2-webserver-setting/8.png" alt="8" /></p>
+
+    <p><img src="http://localhost:4000/img/2017-10-10-windows-server-2008r2-webserver-setting/9.png" alt="9" /></p>
+
+    <p><img src="http://localhost:4000/img/2017-10-10-windows-server-2008r2-webserver-setting/10.png" alt="10" /></p>
+
+    <p><img src="http://localhost:4000/img/2017-10-10-windows-server-2008r2-webserver-setting/11.png" alt="11" /></p>
+
+    <p><img src="http://localhost:4000/img/2017-10-10-windows-server-2008r2-webserver-setting/12.png" alt="12" /></p>
+  </li>
+  <li>
+    <p>선택한 기능을 설치하고 설치된 목록을 확인합니다.</p>
+
+    <p><img src="http://localhost:4000/img/2017-10-10-windows-server-2008r2-webserver-setting/12.png" alt="12" /></p>
+
+    <p><img src="http://localhost:4000/img/2017-10-10-windows-server-2008r2-webserver-setting/13.png" alt="13" /></p>
+
+    <p><img src="http://localhost:4000/img/2017-10-10-windows-server-2008r2-webserver-setting/14.png" alt="14" /></p>
+
+    <p><img src="http://localhost:4000/img/2017-10-10-windows-server-2008r2-webserver-setting/15.png" alt="15" /></p>
+  </li>
+</ol>
+:ET

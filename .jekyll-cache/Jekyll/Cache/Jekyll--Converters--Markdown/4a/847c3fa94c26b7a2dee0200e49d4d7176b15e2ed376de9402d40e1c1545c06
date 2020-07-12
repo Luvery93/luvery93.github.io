@@ -1,0 +1,70 @@
+I"�+<ul>
+  <li>
+    <p><a href="https://www.acmicpc.net/problem/3019">문제</a></p>
+
+    <p><img src="http://localhost:4000/img/2018-10-26-boj-3019/1.png" alt="1" /></p>
+  </li>
+  <li>
+    <p>고민</p>
+
+    <p>처음에는 주어진 테트리스 모양을 전부 4차원 배열로 구현했었다. 한번에 정답을 풀지 못하여 해매다가 생각해보니 테트리스의 블럭이 맞닿는 면만 계산하면 블럭과 쌓여있는 테트리스 블럭간의 공백을 계산할 수 있었다. 테트리스의 가장 낮은 부분을 0이라 생각하고 각각의 높이를 계산하여 답을 구할 수 있었다. 어떤 문제를 봤을 때 보다 쉽게 풀 수 있는지 계속 생각해보고 구현을 시작해야 겠다.</p>
+  </li>
+  <li>
+    <p><a href="https://github.com/Luvery93/Problem-Solving/blob/master/BOJ/3019.cpp">코드</a></p>
+
+    <div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// https://www.acmicpc.net/problem/3019</span>
+<span class="cp">#include &lt;iostream&gt;
+#include &lt;string&gt;
+</span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+  
+<span class="kt">int</span> <span class="n">n</span><span class="p">,</span> <span class="n">b</span><span class="p">;</span>
+<span class="kt">int</span> <span class="n">height</span><span class="p">[</span><span class="mi">1011</span><span class="p">];</span>
+  
+<span class="kt">int</span> <span class="nf">isfixed</span><span class="p">(</span><span class="n">string</span> <span class="n">s</span><span class="p">,</span> <span class="kt">int</span> <span class="n">col</span><span class="p">)</span> <span class="p">{</span>
+	<span class="k">if</span> <span class="p">(</span><span class="n">col</span> <span class="o">+</span> <span class="n">s</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span><span class="o">&gt;</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
+		<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+	<span class="p">}</span>
+	<span class="kt">int</span> <span class="n">base</span> <span class="o">=</span> <span class="n">height</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">-</span> <span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="sc">'0'</span><span class="p">);</span>
+	<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">s</span><span class="p">.</span><span class="n">size</span><span class="p">();</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+		<span class="k">if</span> <span class="p">(</span><span class="n">base</span> <span class="o">!=</span> <span class="n">height</span><span class="p">[</span><span class="n">col</span> <span class="o">+</span> <span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="sc">'0'</span><span class="p">))</span> <span class="p">{</span>
+			<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+		<span class="p">}</span>
+	<span class="p">}</span>
+	<span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span>
+  
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+	<span class="n">ios</span><span class="o">::</span><span class="n">sync_with_stdio</span><span class="p">(</span><span class="nb">false</span><span class="p">);</span>
+	<span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">n</span> <span class="o">&gt;&gt;</span> <span class="n">b</span><span class="p">;</span>
+	<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+		<span class="kt">int</span> <span class="n">col</span><span class="p">;</span>
+		<span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">col</span><span class="p">;</span>
+		<span class="n">height</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">col</span><span class="p">;</span>
+	<span class="p">}</span>
+	<span class="kt">int</span> <span class="n">ans</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+	<span class="c1">// col</span>
+	<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+		<span class="k">if</span> <span class="p">(</span><span class="n">b</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+			<span class="n">ans</span> <span class="o">+=</span> <span class="n">isfixed</span><span class="p">(</span><span class="s">"0"</span><span class="p">,</span> <span class="n">j</span><span class="p">)</span> <span class="o">+</span> <span class="n">isfixed</span><span class="p">(</span><span class="s">"0000"</span><span class="p">,</span> <span class="n">j</span><span class="p">);</span>
+		<span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">b</span> <span class="o">==</span> <span class="mi">2</span><span class="p">)</span> <span class="p">{</span>
+			<span class="n">ans</span> <span class="o">+=</span> <span class="n">isfixed</span><span class="p">(</span><span class="s">"00"</span><span class="p">,</span> <span class="n">j</span><span class="p">);</span>
+		<span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">b</span> <span class="o">==</span> <span class="mi">3</span><span class="p">){</span>
+			<span class="n">ans</span> <span class="o">+=</span> <span class="n">isfixed</span><span class="p">(</span><span class="s">"001"</span><span class="p">,</span> <span class="n">j</span><span class="p">)</span> <span class="o">+</span> <span class="n">isfixed</span><span class="p">(</span><span class="s">"10"</span><span class="p">,</span> <span class="n">j</span><span class="p">);</span>
+		<span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">b</span> <span class="o">==</span> <span class="mi">4</span><span class="p">)</span> <span class="p">{</span>
+			<span class="n">ans</span> <span class="o">+=</span> <span class="n">isfixed</span><span class="p">(</span><span class="s">"100"</span><span class="p">,</span> <span class="n">j</span><span class="p">)</span> <span class="o">+</span> <span class="n">isfixed</span><span class="p">(</span><span class="s">"01"</span><span class="p">,</span> <span class="n">j</span><span class="p">);</span>
+		<span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">b</span> <span class="o">==</span> <span class="mi">5</span><span class="p">)</span> <span class="p">{</span>
+			<span class="n">ans</span> <span class="o">+=</span> <span class="n">isfixed</span><span class="p">(</span><span class="s">"000"</span><span class="p">,</span> <span class="n">j</span><span class="p">)</span> <span class="o">+</span> <span class="n">isfixed</span><span class="p">(</span><span class="s">"01"</span><span class="p">,</span> <span class="n">j</span><span class="p">)</span> <span class="o">+</span> <span class="n">isfixed</span><span class="p">(</span><span class="s">"101"</span><span class="p">,</span> <span class="n">j</span><span class="p">)</span> <span class="o">+</span> <span class="n">isfixed</span><span class="p">(</span><span class="s">"10"</span><span class="p">,</span> <span class="n">j</span><span class="p">);</span>
+		<span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">b</span> <span class="o">==</span> <span class="mi">6</span><span class="p">)</span> <span class="p">{</span>
+			<span class="n">ans</span> <span class="o">+=</span> <span class="n">isfixed</span><span class="p">(</span><span class="s">"000"</span><span class="p">,</span> <span class="n">j</span><span class="p">)</span> <span class="o">+</span> <span class="n">isfixed</span><span class="p">(</span><span class="s">"00"</span><span class="p">,</span> <span class="n">j</span><span class="p">)</span> <span class="o">+</span> <span class="n">isfixed</span><span class="p">(</span><span class="s">"011"</span><span class="p">,</span> <span class="n">j</span><span class="p">)</span> <span class="o">+</span> <span class="n">isfixed</span><span class="p">(</span><span class="s">"20"</span><span class="p">,</span> <span class="n">j</span><span class="p">);</span>
+		<span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">b</span> <span class="o">==</span> <span class="mi">7</span><span class="p">)</span> <span class="p">{</span>
+			<span class="n">ans</span> <span class="o">+=</span> <span class="n">isfixed</span><span class="p">(</span><span class="s">"000"</span><span class="p">,</span> <span class="n">j</span><span class="p">)</span> <span class="o">+</span> <span class="n">isfixed</span><span class="p">(</span><span class="s">"02"</span><span class="p">,</span> <span class="n">j</span><span class="p">)</span> <span class="o">+</span> <span class="n">isfixed</span><span class="p">(</span><span class="s">"110"</span><span class="p">,</span> <span class="n">j</span><span class="p">)</span> <span class="o">+</span> <span class="n">isfixed</span><span class="p">(</span><span class="s">"00"</span><span class="p">,</span> <span class="n">j</span><span class="p">);</span>
+		<span class="p">}</span>
+	<span class="p">}</span>
+  	
+	<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">ans</span> <span class="o">&lt;&lt;</span> <span class="sc">'\n'</span><span class="p">;</span>
+	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
+:ET

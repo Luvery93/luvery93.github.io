@@ -1,0 +1,44 @@
+I"�	<ol>
+  <li>Host 설정
+    <ul>
+      <li>Geforece Experience Shield의 GAMESTREAM 옵션 실행</li>
+      <li>Chrome 원격 데스크톱을 통해 로그인한 상태 유지</li>
+      <li>Moonlight Port 설정
+        <ul>
+          <li>TCP : 35043, 47984, 47989, 47995~47996, 48010</li>
+          <li>UDP : 47998~48000, 48010</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>Client 설정 - Java(legacy)
+    <ul>
+      <li>JRE(JDK) 1.7.0 이상 설치 및 환경 변수 설정</li>
+      <li><a href="https://github.com/moonlight-stream/moonlight-pc/releases">Moonlight PC</a>에서 OS에 맞는 .jar 파일 다운로드 및 <a href="http://launch4j.sourceforge.net/">Launch4j</a>를 통해 윈도우 실행프로그램으로 변경, 혹은 jar 파일 그대로 실행</li>
+      <li>Client에서 Moonlight.exe 실행 후 Host 주소를 입력하면 생성되는 pin code를 Host의 Shield에 입력</li>
+      <li>Host PC가 세션을 가지고 있어야 되므로, pin code 입력시 크롬 원격데스크톱을 이용</li>
+      <li>Geforece Experience 에서 지원하는 게임 및 추가한 게임을 선택 후 실행</li>
+    </ul>
+  </li>
+  <li>Client 설정 - Chrome(alpha)
+    <ul>
+      <li><a href="https://github.com/moonlight-stream/moonlight-chrome/releases/tag/v0.7.3">Moonlight Chrome</a>에서 Chrome용 설치 파일 다운로드 후 <a href="chrome://extensions/">크롬 확장프로그램</a>에서 드래그 후 설치</li>
+      <li>Client에서 WOL로 Host PC를 킨 후 Host 정보를 추가, Host 주소를 입력하면 생성되는 pin code를 Host의 Shield에 입력</li>
+      <li>Host PC가 세션을 가지고 있어야 되므로, pin code 입력시 크롬 원격데스크톱을 이용</li>
+      <li>Geforece Experience 에서 지원하는 게임 및 추가한 게임을 선택 후 실행</li>
+    </ul>
+  </li>
+  <li>Client 설정 - Android(app)
+    <ul>
+      <li>Moolight 안드로이드 어플리케이션을 마켓에서 검색 후 설치</li>
+      <li>Android에서 WOL로 Host PC를 킨 후 Host 정보를 추가, Host 주소를 입력하면 생성되는 pin code를 Host Shield에 입력</li>
+      <li>Host PC가 세션을 가지고 있어야 되므로, pin code 입력시 크롬 원격데스크톱을 이용</li>
+      <li>Geforece Experience 에서 지원하는 게임 및 추가한 게임을 선택 후 실행</li>
+    </ul>
+  </li>
+</ol>
+
+<ul>
+  <li>PC 연결 시(Java, Chrome) 전체 화면 및 기타 옵션은 성능에 문제가 발생 할 수 있으므로 체크 해제</li>
+</ul>
+:ET

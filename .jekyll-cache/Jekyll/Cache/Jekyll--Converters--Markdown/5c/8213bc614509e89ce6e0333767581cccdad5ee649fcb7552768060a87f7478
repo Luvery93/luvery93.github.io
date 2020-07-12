@@ -1,0 +1,163 @@
+I"�<ol>
+  <li>
+    <p><a href="https://reshade.me/">Reshade(리쉐이드)</a></p>
+
+    <ul>
+      <li>게임 혹은 영상의 후처리 작업을 통해 그래픽 품질을 향상시키는데 목적이 있는 프로그램입니다.</li>
+      <li>리쉐이드는 Direct3D 9, Direct3D 10, Direct3D 11, 그리고 OpenGL을 모두 지원합니다.</li>
+      <li>Windows Vista SP1 혹은 그 이상의 운영체제에서 작동하며 <a href="https://www.microsoft.com/en-us/download/details.aspx?id=8109">DirectX end-user runtime</a>을 필요로 합니다.</li>
+      <li>2017-07-25 기준 최신 버전은 <a href="https://reshade.me/downloads/ReShade_Setup_3.0.8.exe">3.0.8</a> 버전입니다.</li>
+      <li>리쉐이드 적용
+        <ol>
+          <li>
+            <p>다운로드 받은 ReShade_Setup_3.0.8.exe 를 실행 합니다.</p>
+
+            <p><img src="http://localhost:4000/img/2017-07-25-raise-the-frame-with-reshade/1.png" alt="1" /></p>
+          </li>
+          <li>
+            <p>S<strong>elect game</strong>을 선택한 뒤 PUBG 설치 경로를 선택합니다.</p>
+
+            <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>C:\Program Files (x86)\Steam\steamapps\common\PUBG\TslGame\Binaries\Win64\TslGame.exe
+</code></pre></div>            </div>
+
+            <p><img src="http://localhost:4000/img/2017-07-25-raise-the-frame-with-reshade/2.png" alt="2" /></p>
+          </li>
+          <li>
+            <p><strong>Select rendering API</strong>에서 <strong>Direct3D 10+</strong>을 선택합니다.</p>
+
+            <p><img src="http://localhost:4000/img/2017-07-25-raise-the-frame-with-reshade/3.png" alt="3" /></p>
+          </li>
+          <li>
+            <p>리쉐이드 다운로드 확인창이 뜬 뒤, 다운로드가 진행 됩니다.</p>
+
+            <p><img src="http://localhost:4000/img/2017-07-25-raise-the-frame-with-reshade/4.png" alt="4" /></p>
+
+            <p><img src="http://localhost:4000/img/2017-07-25-raise-the-frame-with-reshade/5.png" alt="5" /></p>
+          </li>
+          <li>
+            <p>다운로드 후 뜨는 팝업창에서 설치하고자 하는 effect를 전부 해제합니다.</p>
+
+            <p><img src="http://localhost:4000/img/2017-07-25-raise-the-frame-with-reshade/6.png" alt="6" /></p>
+          </li>
+          <li>
+            <p>그 후  <strong>AdaptiveSharpen.fx, Technicolor2.fx</strong>만 선택합니다. 각각 선명도, 색감에 관한 효과입니다.</p>
+
+            <p><img src="http://localhost:4000/img/2017-07-25-raise-the-frame-with-reshade/7.png" alt="7" /></p>
+
+            <p><img src="http://localhost:4000/img/2017-07-25-raise-the-frame-with-reshade/8.png" alt="8" /></p>
+          </li>
+          <li>
+            <p>Done 이라는 글자가 보이면 패치가 완료된 것이므로 프로그램을 종료합니다.</p>
+
+            <p><img src="http://localhost:4000/img/2017-07-25-raise-the-frame-with-reshade/9.png" alt="9" /></p>
+          </li>
+          <li>
+            <p>위 과정으로 설치된 파일들을 백업해 둡니다. 리쉐이드로 인한 실행 오류가 발생 했을 시 기존 리쉐이드 설정 파일을 삭제하고 리쉐이드 백업 파일을 덮어쓰기 합니다.</p>
+
+            <p><img src="http://localhost:4000/img/2017-07-25-raise-the-frame-with-reshade/10.png" alt="10" /></p>
+          </li>
+          <li>
+            <p>아래는 리쉐이드 백업파일 입니다.</p>
+
+            <p><a href="http://localhost:4000/download/2017-07-25-raise-the-frame-with-reshade/reshade_backup.zip">Resade PUBG Backup.zip</a></p>
+          </li>
+        </ol>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>Pugb 설정</p>
+
+    <ul>
+      <li>
+        <p>게임 내에서 shift+f2 키를 통해 리쉐이드 오버레이에 접근합니다.</p>
+
+        <p><img src="http://localhost:4000/img/2017-07-25-raise-the-frame-with-reshade/11.png" alt="11" /></p>
+      </li>
+      <li>
+        <p>Continue를 누른 뒤, + 버튼을 누르고 새 프로파일 이름을 입력하여 작성합니다.</p>
+
+        <p><img src="http://localhost:4000/img/2017-07-25-raise-the-frame-with-reshade/12.png" alt="12" /></p>
+      </li>
+      <li>
+        <p>Continue를 누른 뒤, 적용하고자 하는 효과인 <strong>AdaptiveSharpen.fx, Techinicolor2.fx</strong>에 단축키를 설정합니다. 그 후 해당 옵션을 단축키를 통해 활성화 합니다.</p>
+
+        <p><img src="http://localhost:4000/img/2017-07-25-raise-the-frame-with-reshade/13.png" alt="13" /></p>
+      </li>
+      <li>
+        <p>Finish를 누른 뒤, 두 효과의 적용 강도를 조절합니다.</p>
+
+        <p><img src="http://localhost:4000/img/2017-07-25-raise-the-frame-with-reshade/14.png" alt="14" /></p>
+      </li>
+      <li>
+        <p>FPS는 Settigns 의 Show FPS를 활성화합니다.</p>
+
+        <p><img src="http://localhost:4000/img/2017-07-25-raise-the-frame-with-reshade/15.png" alt="15" /></p>
+      </li>
+      <li>
+        <p>지속되는 PUBG 최적화 패치로 개인 사양에 맞게 PUBG 인게임 옵션을 조정합니다.</p>
+
+        <ul>
+          <li>
+            <p>i7-6700(4.4/4.0 oc), gt970 super jetstream, 16g ram(3000)</p>
+
+            <p><img src="http://localhost:4000/img/2017-07-25-raise-the-frame-with-reshade/16.png" alt="16" /></p>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>시작옵션 설정</p>
+
+    <ul>
+      <li>
+        <p>프레임에 직접적인 영향을 끼치는지는 불분명하나 우선 적용중이며 게임 도중 오류가 발생하면 옵션을 삭제해야 됩니다.</p>
+
+        <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>-cpuPause 4 -thread 8 -nojoy -high -novid -refresh 144 -heapsize 1572864 -maxMem=15360 -maxVram=3072 -USEALLAVAILABLECORES -malloc=system
+</code></pre></div>        </div>
+
+        <p><img src="http://localhost:4000/img/2017-07-25-raise-the-frame-with-reshade/17.png" alt="17" /></p>
+
+        <p><img src="http://localhost:4000/img/2017-07-25-raise-the-frame-with-reshade/18.png" alt="18" /></p>
+
+        <ul>
+          <li>cpuPause : CPU 물리 코어 갯수</li>
+          <li>thread : CPU 논리 코어 갯수</li>
+          <li>nojoy : 패드 리소스 제거</li>
+          <li>high : cpu 사용 우선 순의 높음 설정</li>
+          <li>novid : 동영상 및 로고 무시</li>
+          <li>refresh : 모니터 화면 주사율에 맞춰서 작성</li>
+          <li>heapsize : 3GB 이상 = 1572864</li>
+          <li>maxMem : 최대 동적 메모리 설정, 전체 메모리 - 1GB 설정
+            <ul>
+              <li>16GB : (16-1) * 1024 = 15360</li>
+            </ul>
+          </li>
+          <li>maxVram : 그래픽 카드 최대 동적 메모리 설정, 전체 메모리 - 0.5GB 설정
+            <ul>
+              <li>GTX 970 : 3.5GB + 0.5GB 의 vram을 지니므로 (3.5 - 0.5) * 1024 = 3072</li>
+            </ul>
+          </li>
+          <li>USEALLAVAILABLECORES : 모든 코어를 프로세스에 할당</li>
+          <li>malloc=system : 동적 메모리 할당을 시스템에서 조정</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>TslGame.exe 클라이언트 높은 DPI 조정 동작을 재정의</p>
+
+    <ul>
+      <li>
+        <p>PUBG 설치 경로의 클라이언트 속성의 호환성의 높은 DPI 조정 동작을 재정의 합니다를 체크합니다.</p>
+
+        <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>C:\Program Files (x86)\Steam\steamapps\common\PUBG\TslGame\Binaries\Win64\TslGame.exe
+</code></pre></div>        </div>
+
+        <p><img src="http://localhost:4000/img/2017-07-25-raise-the-frame-with-reshade/19.png" alt="19" /></p>
+      </li>
+    </ul>
+  </li>
+</ol>
+:ET

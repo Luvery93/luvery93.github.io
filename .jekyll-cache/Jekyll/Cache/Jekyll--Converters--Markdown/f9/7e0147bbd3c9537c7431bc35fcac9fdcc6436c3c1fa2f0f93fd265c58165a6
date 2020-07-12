@@ -1,0 +1,65 @@
+I"�<ol>
+  <li>
+    <p>Windows Server 2008 이상부터 서버에 원격데스크톱 기능을 사용하기 위해서 서버 역할의 <strong>원격 데스크톱 서비스</strong>를 설치합니다.</p>
+
+    <p><img src="http://localhost:4000/img/2017-10-10-windows-server-2008r2-remote-desktop-setting/1.png" alt="1" /></p>
+  </li>
+  <li>
+    <p>원격 데스크톱 서비스 소개를 지나 설치할 역할 서비스를 선택합니다.</p>
+
+    <p><img src="http://localhost:4000/img/2017-10-10-windows-server-2008r2-remote-desktop-setting/2.png" alt="2" /></p>
+
+    <p><img src="http://localhost:4000/img/2017-10-10-windows-server-2008r2-remote-desktop-setting/3.png" alt="3" /></p>
+
+    <p><img src="http://localhost:4000/img/2017-10-10-windows-server-2008r2-remote-desktop-setting/4.png" alt="4" /></p>
+
+    <p><img src="http://localhost:4000/img/2017-10-10-windows-server-2008r2-remote-desktop-setting/5.png" alt="5" /></p>
+
+    <p><img src="http://localhost:4000/img/2017-10-10-windows-server-2008r2-remote-desktop-setting/6.png" alt="6" /></p>
+
+    <p><img src="http://localhost:4000/img/2017-10-10-windows-server-2008r2-remote-desktop-setting/7.png" alt="7" /></p>
+
+    <p><img src="http://localhost:4000/img/2017-10-10-windows-server-2008r2-remote-desktop-setting/8.png" alt="8" /></p>
+
+    <p><img src="http://localhost:4000/img/2017-10-10-windows-server-2008r2-remote-desktop-setting/9.png" alt="9" /></p>
+  </li>
+  <li>
+    <p>선택된 역할 서비스를 확인하고 설치를 진행합니다.</p>
+
+    <p><img src="http://localhost:4000/img/2017-10-10-windows-server-2008r2-remote-desktop-setting/10.png" alt="10" /></p>
+
+    <p><img src="http://localhost:4000/img/2017-10-10-windows-server-2008r2-remote-desktop-setting/11.png" alt="11" /></p>
+
+    <p><img src="http://localhost:4000/img/2017-10-10-windows-server-2008r2-remote-desktop-setting/12.png" alt="12" /></p>
+  </li>
+  <li>
+    <p>재부팅 이후 설치 완료 메시지를 확인합니다.</p>
+
+    <p><img src="http://localhost:4000/img/2017-10-10-windows-server-2008r2-remote-desktop-setting/13.png" alt="13" /></p>
+  </li>
+  <li>
+    <p>서버 - 역할 - 원격 데스크톱 서비스 에서 세션 호스트 구성 설정을 진행합니다.</p>
+
+    <p><img src="http://localhost:4000/img/2017-10-10-windows-server-2008r2-remote-desktop-setting/14.png" alt="14" /></p>
+  </li>
+  <li>
+    <p>위 설정 편집을 더블 클릭하여 한 계정에 다중 세션을 설정합니다.</p>
+
+    <p><img src="http://localhost:4000/img/2017-10-10-windows-server-2008r2-remote-desktop-setting/15.png" alt="15" /></p>
+  </li>
+  <li>
+    <p>라이선스 서버를 설정합니다.</p>
+
+    <p><img src="http://localhost:4000/img/2017-10-10-windows-server-2008r2-remote-desktop-setting/16.png" alt="16" /></p>
+
+    <p><img src="http://localhost:4000/img/2017-10-10-windows-server-2008r2-remote-desktop-setting/17.png" alt="17" /></p>
+
+    <p><img src="http://localhost:4000/img/2017-10-10-windows-server-2008r2-remote-desktop-setting/18.png" alt="18" /></p>
+  </li>
+  <li>
+    <p>설정이 완료되었는지 확인합니다.</p>
+
+    <p><img src="http://localhost:4000/img/2017-10-10-windows-server-2008r2-remote-desktop-setting/19.png" alt="19" /></p>
+  </li>
+</ol>
+:ET

@@ -1,0 +1,47 @@
+I"g	<ul>
+  <li>원격 데스크톱 연결로 접근하고자 하는 컴퓨터의 원격 설정에 따라 아래와 같은 문제가 자주 발생하여 이를 기록합니다.</li>
+</ul>
+
+<ol>
+  <li>
+    <p>원격 데스크톱 연결 설정에서 Oracle 수정 암호화 그룹 정책 값을 변경하여 아래와 같이 “<strong>인증 오류가 발생했습니다</strong>” 라는 오류가 발생할 경우</p>
+
+    <p><img src="http://localhost:4000/img/2018-10-22-mstsc-common-error-fix/1.png" alt="1" /></p>
+  </li>
+</ol>
+
+<ul>
+  <li>
+    <p>원격 데스크톱 연결을 실행하는 컴퓨터에서 “<strong>gpedit.msc</strong>“를 실행하여 로컬 그룹 정책 편집기를 연 뒤, “<strong>관리 템플릿-시스템-자격 증명 위임</strong>“으로 접근하여 “<strong>Oracle 수정 암호화</strong>” 를 편집합니다.</p>
+
+    <p><img src="http://localhost:4000/img/2018-10-22-mstsc-common-error-fix/2.png" alt="2" /></p>
+  </li>
+  <li>
+    <p>“<strong>Oracle 수정 암호화</strong>“의 설정 값을 “<strong>사용(E)</strong>“로 변경한 뒤, 보호 수준을 “<strong>취약</strong>“으로 설정합니다.</p>
+
+    <p><img src="http://localhost:4000/img/2018-10-22-mstsc-common-error-fix/3.png" alt="3" /></p>
+  </li>
+</ul>
+
+<ol>
+  <li>
+    <p>윈도우 서버 운영체제로 원격 데스크톱 연결을 진행할 때, “<strong>원격 데스크톱 서버 클라이언트 엑세스가 없으므로 원격 세션 연결이 끊어졌습니다</strong>” 라는 오류가 발생합니다.</p>
+
+    <p><img src="http://localhost:4000/img/2018-10-22-mstsc-common-error-fix/4.png" alt="4" /></p>
+  </li>
+</ol>
+
+<ul>
+  <li>
+    <p>이 경우에는 레지스트리에서 원격 데스크톱 연결에 사용하는 “ClientHWID” 의 값을 삭제합니다. 아래와 같은 레지스트리 설정 문구를 <a href="http://localhost:4000/download/2018-10-22-mstsc-common-error-fix/mstsc_client_access_error_fix.reg">“.reg”파일</a>로 저장한 뒤 실행하여 적용시킬 수 있습니다.</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Windows Registry Editor Version 5.00
+  
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\MSLicensing\HardwareID]
+"ClientHWID"=-
+  
+[-HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\MSLicensing\Store\LICENSE000]
+</code></pre></div>    </div>
+  </li>
+</ul>
+:ET

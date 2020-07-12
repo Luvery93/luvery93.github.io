@@ -1,0 +1,67 @@
+I"�<ul>
+  <li>
+    <p><a href="https://www.acmicpc.net/problem/3568">문제</a></p>
+
+    <p><img src="http://localhost:4000/img/2018-11-11-boj-3568/1.png" alt="1" /></p>
+  </li>
+  <li>
+    <p>고민</p>
+
+    <p>입력형식이 ‘자료형’, ‘변수명 + 자료형의 역순’, … 이기에 공백을 기준으로 처리했다. 변수명은 영문 대소문자로 이루어져있기에 해당 조건문을 통해 변수명과 자료형을 구분해서 저장했다. 배열의 경우 역순으로 출력하면 대괄호의 방향이 바뀌니 열고 닫는 대괄호를 반대로 저장했다.</p>
+  </li>
+  <li>
+    <p><a href="https://github.com/Luvery93/Problem-Solving/blob/master/BOJ/3568.cpp">코드</a></p>
+
+    <div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include&lt;iostream&gt;
+#include&lt;stdio.h&gt;
+#include&lt;string&gt;
+#include&lt;algorithm&gt;
+</span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+  
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+	<span class="n">ios</span><span class="o">::</span><span class="n">sync_with_stdio</span><span class="p">(</span><span class="nb">false</span><span class="p">);</span>
+	<span class="n">string</span> <span class="n">base</span><span class="p">;</span>
+	<span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">base</span><span class="p">;</span>
+	<span class="k">while</span> <span class="p">(</span><span class="nb">true</span><span class="p">)</span> <span class="p">{</span>
+		<span class="n">string</span> <span class="n">next</span><span class="p">;</span>
+		<span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">next</span><span class="p">;</span>
+		<span class="n">string</span> <span class="n">value</span> <span class="o">=</span> <span class="s">""</span><span class="p">;</span>
+		<span class="n">string</span> <span class="n">type</span> <span class="o">=</span> <span class="s">""</span><span class="p">;</span>
+		<span class="kt">bool</span> <span class="n">isend</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
+		<span class="kt">bool</span> <span class="n">isvalue</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+		<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">next</span><span class="p">.</span><span class="n">size</span><span class="p">();</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+			<span class="k">if</span> <span class="p">(</span><span class="n">isvalue</span> <span class="o">==</span> <span class="nb">true</span><span class="p">)</span> <span class="p">{</span>
+				<span class="k">if</span> <span class="p">((</span><span class="n">next</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="sc">'0'</span> <span class="o">&gt;=</span> <span class="sc">'a'</span> <span class="o">-</span> <span class="sc">'0'</span> <span class="o">&amp;&amp;</span> <span class="n">next</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="sc">'0'</span> <span class="o">&lt;=</span> <span class="sc">'z'</span> <span class="o">-</span> <span class="sc">'0'</span><span class="p">)</span>
+					<span class="o">||</span> <span class="p">(</span><span class="n">next</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="sc">'0'</span> <span class="o">&gt;=</span> <span class="sc">'A'</span> <span class="o">-</span> <span class="sc">'0'</span> <span class="o">&amp;&amp;</span> <span class="n">next</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="sc">'0'</span> <span class="o">&lt;=</span> <span class="sc">'Z'</span> <span class="o">-</span> <span class="sc">'0'</span><span class="p">))</span> <span class="p">{</span>
+					<span class="n">value</span> <span class="o">+=</span> <span class="n">next</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+				<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+					<span class="n">isvalue</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
+					<span class="n">i</span><span class="o">--</span><span class="p">;</span>
+				<span class="p">}</span>
+			<span class="p">}</span>
+			<span class="k">else</span> <span class="p">{</span>
+				<span class="k">if</span> <span class="p">(</span><span class="n">next</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="sc">'['</span><span class="p">)</span> <span class="p">{</span>
+					<span class="n">type</span> <span class="o">+=</span> <span class="sc">']'</span><span class="p">;</span>
+				<span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">next</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="sc">']'</span><span class="p">)</span> <span class="p">{</span>
+					<span class="n">type</span> <span class="o">+=</span> <span class="sc">'['</span><span class="p">;</span>
+				<span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">next</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="sc">','</span><span class="p">)</span> <span class="p">{</span>
+					<span class="k">break</span><span class="p">;</span>
+				<span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">next</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="sc">';'</span><span class="p">)</span> <span class="p">{</span>
+					<span class="n">isend</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+				<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+					<span class="n">type</span> <span class="o">+=</span> <span class="n">next</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+				<span class="p">}</span>
+			<span class="p">}</span>
+		<span class="p">}</span>
+		<span class="n">reverse</span><span class="p">(</span><span class="n">type</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">type</span><span class="p">.</span><span class="n">end</span><span class="p">());</span>
+		<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">base</span> <span class="o">&lt;&lt;</span> <span class="n">type</span> <span class="o">&lt;&lt;</span> <span class="sc">' '</span> <span class="o">&lt;&lt;</span> <span class="n">value</span> <span class="o">&lt;&lt;</span> <span class="s">";</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+		<span class="k">if</span> <span class="p">(</span><span class="n">isend</span> <span class="o">==</span> <span class="nb">true</span><span class="p">)</span> <span class="p">{</span>
+			<span class="k">break</span><span class="p">;</span>
+		<span class="p">}</span>
+	<span class="p">}</span>
+	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
+:ET

@@ -1,0 +1,69 @@
+I"8,<ul>
+  <li>
+    <p><a href="https://programmers.co.kr/learn/courses/30/lessons/42895">문제</a></p>
+
+    <p><img src="http://localhost:4000/img/2020-07-12-prgs-42895/1.png" alt="1" /></p>
+  </li>
+  <li>
+    <p>고민</p>
+
+    <p>문제 제한 사항을 보고 처음에는 1~32001 길이의 배열을 만들어 해당 값을 넣고 계산하며 처리하려했다. 테스트 케이스가 대부분 통과 못하자, 해당 범위를 벗어난 값이 다른 연산자에 의해 다시 결과값에 포함될 수 있는 사실을 깨닫고 List에 값을 관리하는 형식으로 생각을 변경했다. N의 리스트를 구할 때, 우선 5를 N만큼 이은 수가 (1 ~ N -1) 리스트에 없는 경우 N번째 리스트에 추가해주고 앞 전에 구한 리스트들로 값을 구하려 했다. 예를 들어 N = 6일 경우 N = 5인 리스트에 5와 덧셈, 곱셈, 뺄셈, 나눗셈을 하면되겠지 싶었다. 결과는 예외가 많았다. N = 2 인 리스트를 3번 계산한 결과를 생각지 못했다. 여기까지 생각 후 정답이 나왔다. 리스트의 길이가 N인경우 ( {1,N-1}, {2, N-2}, {3,N-3}, … {N-1, 1}) 의 리스트끼리의 계산 결과를 전부 포함하면 예외가 없다고 생각했다. 여기에 더해서 계산하는 범위는 절반까지만 진행하면되기에 N/2까지 계산하였다.</p>
+  </li>
+  <li>
+    <p><a href="https://github.com/Luvery93/Problem-Solving/blob/master/Programmers/42895.java">코드</a></p>
+
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">java.util.ArrayList</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.HashSet</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.List</span><span class="o">;</span>
+  
+<span class="kd">class</span> <span class="nc">Solution</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="nc">List</span><span class="o">&lt;</span><span class="nc">Integer</span><span class="o">&gt;[]</span> <span class="nf">getNewList</span><span class="o">(</span><span class="nc">List</span><span class="o">&lt;</span><span class="nc">Integer</span><span class="o">&gt;</span> <span class="n">list</span><span class="o">[],</span> <span class="kt">int</span> <span class="no">N</span><span class="o">,</span> <span class="kt">int</span> <span class="n">level</span><span class="o">){</span>
+		<span class="kt">int</span> <span class="n">tmp</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+		<span class="k">for</span><span class="o">(</span> <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">level</span><span class="o">;</span> <span class="n">i</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="o">;</span> <span class="n">i</span><span class="o">--</span> <span class="o">)</span> <span class="o">{</span>
+			<span class="n">tmp</span> <span class="o">+=</span> <span class="no">N</span> <span class="o">*</span> <span class="nc">Math</span><span class="o">.</span><span class="na">pow</span><span class="o">(</span><span class="mi">10</span><span class="o">,</span> <span class="o">(</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="o">));</span>
+		<span class="o">}</span>
+  		
+		<span class="n">list</span><span class="o">[</span><span class="n">level</span><span class="o">].</span><span class="na">add</span><span class="o">(</span><span class="n">tmp</span><span class="o">);</span>
+  		
+		<span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">level</span><span class="o">/</span><span class="mi">2</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+			<span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="o">(</span><span class="n">level</span> <span class="o">-</span> <span class="n">i</span><span class="o">);</span>
+  			
+			<span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">left</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">left</span> <span class="o">&lt;</span> <span class="n">list</span><span class="o">[</span><span class="n">i</span><span class="o">].</span><span class="na">size</span><span class="o">();</span> <span class="n">left</span><span class="o">++)</span> <span class="o">{</span>
+				<span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">right</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">right</span> <span class="o">&lt;</span> <span class="n">list</span><span class="o">[</span><span class="n">j</span><span class="o">].</span><span class="na">size</span><span class="o">();</span> <span class="n">right</span><span class="o">++)</span> <span class="o">{</span>
+					<span class="kt">int</span> <span class="n">l</span> <span class="o">=</span> <span class="n">list</span><span class="o">[</span><span class="n">i</span><span class="o">].</span><span class="na">get</span><span class="o">(</span><span class="n">left</span><span class="o">);</span>
+					<span class="kt">int</span> <span class="n">r</span> <span class="o">=</span> <span class="n">list</span><span class="o">[</span><span class="n">j</span><span class="o">].</span><span class="na">get</span><span class="o">(</span><span class="n">right</span><span class="o">);</span>
+					<span class="n">list</span><span class="o">[</span><span class="n">level</span><span class="o">].</span><span class="na">add</span><span class="o">(</span><span class="n">l</span> <span class="o">+</span> <span class="n">r</span><span class="o">);</span>
+					<span class="n">list</span><span class="o">[</span><span class="n">level</span><span class="o">].</span><span class="na">add</span><span class="o">(</span><span class="n">l</span> <span class="o">*</span> <span class="n">r</span><span class="o">);</span>
+					<span class="n">list</span><span class="o">[</span><span class="n">level</span><span class="o">].</span><span class="na">add</span><span class="o">(</span><span class="n">l</span> <span class="o">-</span> <span class="n">r</span><span class="o">);</span>
+					<span class="n">list</span><span class="o">[</span><span class="n">level</span><span class="o">].</span><span class="na">add</span><span class="o">(</span><span class="n">r</span> <span class="o">-</span> <span class="n">l</span><span class="o">);</span>
+					<span class="k">if</span> <span class="o">(</span> <span class="n">r</span> <span class="o">!=</span> <span class="mi">0</span> <span class="o">)</span> <span class="o">{</span>
+						<span class="n">list</span><span class="o">[</span><span class="n">level</span><span class="o">].</span><span class="na">add</span><span class="o">(</span><span class="n">l</span> <span class="o">/</span> <span class="n">r</span><span class="o">);</span>	
+					<span class="o">}</span>
+					<span class="k">if</span> <span class="o">(</span> <span class="n">l</span> <span class="o">!=</span> <span class="mi">0</span> <span class="o">)</span> <span class="o">{</span>
+						<span class="n">list</span><span class="o">[</span><span class="n">level</span><span class="o">].</span><span class="na">add</span><span class="o">(</span><span class="n">r</span> <span class="o">/</span> <span class="n">l</span><span class="o">);</span>
+					<span class="o">}</span>
+				<span class="o">}</span>
+			<span class="o">}</span>
+		<span class="o">}</span>
+		<span class="k">return</span> <span class="n">list</span><span class="o">;</span>
+	<span class="o">}</span>
+    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">solution</span><span class="o">(</span><span class="kt">int</span> <span class="no">N</span><span class="o">,</span> <span class="kt">int</span> <span class="n">number</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">List</span><span class="o">&lt;</span><span class="nc">Integer</span><span class="o">&gt;</span> <span class="n">list</span><span class="o">[]</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">[</span><span class="mi">9</span><span class="o">];</span>
+		<span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span> <span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">9</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+			<span class="n">list</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">&lt;</span><span class="nc">Integer</span><span class="o">&gt;();</span>
+		<span class="o">}</span>
+		<span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">level</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span> <span class="n">level</span> <span class="o">&lt;</span> <span class="mi">9</span><span class="o">;</span> <span class="n">level</span><span class="o">++)</span> <span class="o">{</span>
+			<span class="n">list</span> <span class="o">=</span> <span class="n">getNewList</span><span class="o">(</span><span class="n">list</span><span class="o">,</span> <span class="no">N</span><span class="o">,</span> <span class="n">level</span><span class="o">);</span>
+			<span class="nc">HashSet</span><span class="o">&lt;</span><span class="nc">Integer</span><span class="o">&gt;</span> <span class="n">tmp</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">HashSet</span><span class="o">&lt;</span><span class="nc">Integer</span><span class="o">&gt;(</span><span class="n">list</span><span class="o">[</span><span class="n">level</span><span class="o">]);</span>
+			<span class="n">list</span><span class="o">[</span><span class="n">level</span><span class="o">]</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">&lt;</span><span class="nc">Integer</span><span class="o">&gt;(</span><span class="n">tmp</span><span class="o">);</span>
+			<span class="k">if</span><span class="o">(</span> <span class="n">list</span><span class="o">[</span><span class="n">level</span><span class="o">].</span><span class="na">contains</span><span class="o">(</span><span class="n">number</span><span class="o">))</span> <span class="o">{</span>
+				<span class="k">return</span> <span class="n">level</span><span class="o">;</span>
+			<span class="o">}</span>
+		<span class="o">}</span>
+		<span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
+:ET

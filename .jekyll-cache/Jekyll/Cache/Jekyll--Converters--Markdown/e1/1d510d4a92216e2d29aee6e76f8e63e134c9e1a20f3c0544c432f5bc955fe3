@@ -1,0 +1,160 @@
+I"{<ol>
+  <li>
+    <p>Open Broadcaster Software</p>
+
+    <ul>
+      <li><a href="https://obsproject.com/">OBS Studio</a>는 영상 녹화 및 스트리밍을 간단한 설정으로 가능케 하는 무료 프로그램입니다.</li>
+      <li>방송 설정은 i7-6700k, gtx 970, 16 g ram 기준으로 설정 테스트 중입니다.
+        <ol>
+          <li>방송 형식
+            <ul>
+              <li>사용자 임의 방송 서버 선택</li>
+              <li>URL : rtmp://localhost/live</li>
+              <li>스트림 키 : {개인 스트림키}</li>
+            </ul>
+          </li>
+          <li>출력
+            <ul>
+              <li>출력 모드 : 고급</li>
+              <li>인코더 : NVENC H.264 : 인코더 종류에 따라 화질 차이가 눈에 띄지 않아 외장 그래픽으로 설정
+                <ul>
+                  <li>NVENC H.264 : NVIDIA 그래픽 사용 : 보통 화질, 제일 낮은 CPU 로드율, 외장 VGA 사용</li>
+                  <li>QuickSync : Intel CPU 내장 그래픽 사용 : 보통 화질, 낮은 CPU 로드율</li>
+                  <li>x264 : Intel CPU 사용 : 선명한 화질, 높은 CPU 로드율</li>
+                </ul>
+              </li>
+              <li>방송 서비스 인코더 설정 강제 적용 체크 해제</li>
+              <li>키프레임 : 2</li>
+              <li>데이터율 제어 : CBR</li>
+              <li>비트레이트 : 6000</li>
+              <li>2 패스 인코딩 사용 체크 해제</li>
+              <li>1080p(1920 x 1080), 60fps</li>
+            </ul>
+          </li>
+          <li>비디오
+            <ul>
+              <li>출력 (조정된) 해상도 : 1080p(1920 x 1080)</li>
+              <li>축소 필터 : Lanczos(영상 크기 변경을 좀 더 날카롭게 처리, 32 샘플)</li>
+              <li>공통 FPS 값 : 60</li>
+            </ul>
+          </li>
+          <li>고급
+            <ul>
+              <li>프로세스 우선순위 설정 : 높음</li>
+            </ul>
+          </li>
+        </ol>
+      </li>
+      <li>장면 목록 설정은 우선 순위에 따라 앞으로 나오게 됩니다.
+        <ul>
+          <li>장면 목록 : 게임</li>
+          <li>소스 목록 :
+            <ul>
+              <li>가림막 : 화면 전부를 가리는 화면, 이미지</li>
+              <li>트입 : 트위치 twip 이벤트 관련 화면, BrowserSource</li>
+              <li>통합 채팅창 : JSAssist 통합 채팅창 관련 화면, BrowserSource</li>
+              <li>게임 화면 : 실행할 게임 화면, 디스플레이 캡쳐</li>
+              <li>전체 화면 : 전체 화면, 디스플레이 캡쳐</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>NGINX</p>
+
+    <ul>
+      <li>NGINX 는 HTTP, reverse proxy, IMAP/POP3 등 대부분의 웹 관련 서비스를 실행시킬 수 있는 무설치 웹 서버 데몬 프로그램으로 여기에서는 rtmp 서버로의 기능을 사용합니다.</li>
+      <li>RTMP(Real Time Messaging Protocol) : 1935포트를 사용하는 오디오, 비디오 및 기타 데이터를 인터넷을 통해 스트리밍할 떄 쓰이는 통신규약입니다.</li>
+      <li><a href="https://github.com/illuspas/nginx-rtmp-win32">NGINX-win32</a>모듈을 다운로드 받은 뒤 .\conf 아래의 nginx.conf를 아래와 같이 수정합니다.</li>
+      <li>트위치 스트림 키는 <a href="https://www.twitch.tv/luvery93/dashboard/settings">개인 채널 - 대시보드 - 설정 - 방송 암호 키</a>에서 확인할 수 있습니다.</li>
+      <li>유투브 스트림 키는 <a href="https://www.youtube.com/live_dashboard">유투브 실시간 스트리밍</a>에서 확인할 수 있습니다.</li>
+    </ul>
+
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>worker_process	1<span class="p">;</span>
+error_log	logs/error.log debug<span class="p">;</span>
+events <span class="o">{</span>
+	worker_connections	1024<span class="p">;</span>
+<span class="o">}</span>
+rtmp <span class="o">{</span>
+	server <span class="o">{</span>
+		listen 1935<span class="p">;</span>
+		application live <span class="o">{</span>
+			live on<span class="p">;</span>
+			record on<span class="p">;</span>
+			<span class="c"># push rtmp://a.rtmp.youtube.com/live2/{유투브 스트림 키};</span>
+			<span class="c"># push rtmp://live-sel.twitch.tv/app/{트위치 스트림 키};</span>
+		<span class="o">}</span>
+   		
+		application hls <span class="o">{</span>
+			live on<span class="p">;</span>
+			hls on<span class="p">;</span>
+			hls_path	temp/hls<span class="p">;</span>
+			hls_fragment	8s<span class="p">;</span>
+		<span class="o">}</span>
+	<span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div>    </div>
+
+    <ul>
+      <li>nginx를 종료할 떄에는 nginx.exe 파일 위치에서 아래 커맨드를 입력합니다.</li>
+    </ul>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>nginx.exe -s quit
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>JSAssist</p>
+
+    <ul>
+      <li><a href="http://www.js-almighty.com/">JSAssist</a>는 트위치, 유투브, 카카오 TV 채팅을 HTML5 형식으로 통합 반환시켜주는 프로그램입니다.</li>
+      <li>다운로드 후 연동방법은 아래와 같습니다.
+        <ul>
+          <li>트위치 : 트위치 송출 시, 트위치 ID 입력</li>
+          <li>유투브 : 유투브 popout chat에서 chat key 값 입력</li>
+          <li>카카오 TV:  카카오TV 방송 준비시 실행중인 팟플레이어 프로세스 설정</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>Twippy (twip 전용)</p>
+
+    <ul>
+      <li><a href="https://support.twip.kr/hc/ko/articles/115000506168">twippy</a>는 <a href="http://twip.kr/">twip</a>설정 이후 로컬 프로그램으로 도네이션 관리를 위한 프로그램입니다.</li>
+      <li>twippy 프리셋 설정은 <a href="http://twip.kr/dashboard">twip 대시보드</a>에서 설정이 가능합니다.</li>
+      <li>twip 대시보드 초기 등록 시 신분증, 본인 명의 계좌 정보(인터넷 뱅킹 스크린샷 가능)이 필요합니다.</li>
+      <li>twip 대시보드 alert box에서 최소 후원 금액과 후원 효과를 설정한 뒤 저장한 프리셋을 등록합니다.</li>
+    </ul>
+  </li>
+  <li>
+    <p>카카오 TV rtmp 소스 설정</p>
+
+    <ul>
+      <li>카카오 TV는 팟플레이어(카카오 TV)를 실행시켜 입력 소스를 2에서 작성한 소스로 수정해야 합니다.</li>
+      <li>방송 장치 : 파일 주소를 rtmp://localhost/live/{스트림 키} 로 입력해 줍니다.</li>
+      <li>환결설정 - 코덱/필터 - 내장 OpenCodec 의 설정을 변경합니다.
+        <ul>
+          <li>Intel QuickSync 디코더 : 무조건 사용</li>
+          <li>Intel QuickSync 인코더 : 무조건 사용</li>
+          <li>NVIDIA NVENC 인코더 : 무조건 사용</li>
+        </ul>
+      </li>
+      <li>방송하기 - 압축설정 값을 변경합니다.
+        <ul>
+          <li>인코더 : H.264 - NVIDIA NVENC 인코더</li>
+          <li>해상도 : 720p(1280 x 720)</li>
+          <li>크기 조절 방법 : Lanczos</li>
+          <li>품질(비트레이트) : 4000 kbps(beta), vbr 압축 사용 체크 해제</li>
+          <li>초당 프레임수(FPS) : 60 Fps</li>
+          <li>가능하면 원본 FPS 사용</li>
+          <li>네트워크 지연시 화질을 낮춥니다. 체크</li>
+        </ul>
+      </li>
+      <li>팟플레이어를 음소거 해야 음원이 이중 송출되지 않습니다.</li>
+      <li>팟플레이어 자체가 rtmp 서버가 될 수 있지만 시도는 해보지 않았습니다.</li>
+    </ul>
+  </li>
+</ol>
+:ET

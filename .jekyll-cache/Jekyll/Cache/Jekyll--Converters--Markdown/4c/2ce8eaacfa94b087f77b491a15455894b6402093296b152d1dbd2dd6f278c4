@@ -1,0 +1,96 @@
+I"�<ol>
+  <li>
+    <p><a href="https://www.google.com/webmasters/tools/home?hl=ko">Google Search Console</a>에 블로그 등록</p>
+
+    <ul>
+      <li>
+        <p>Google Search Console에 Jekyll 블로그 URL을 등록합니다.</p>
+
+        <p><img src="http://localhost:4000/img/2017-08-21-add-blog-on-google-search-console/1.png" alt="1" /></p>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>Google Search에 등록하는 웹사이트의 소유권을 확인합니다.</p>
+
+    <ul>
+      <li>
+        <p>Google Search에서 제공하는 <strong>html 파일을 다운로드</strong> 한 뒤, 웹사이트에 업로드 합니다.</p>
+
+        <p><img src="http://localhost:4000/img/2017-08-21-add-blog-on-google-search-console/2.png" alt="2" /></p>
+      </li>
+      <li>
+        <p>Jekyll 프로젝트 루트 폴더에 추가합니다.</p>
+
+        <p><img src="http://localhost:4000/img/2017-08-21-add-blog-on-google-search-console/3.png" alt="3" /></p>
+      </li>
+      <li>
+        <p><strong>_config.xml</strong> 파일의 url에 웹사이트 도메인을 추가합니다.</p>
+
+        <p><img src="http://localhost:4000/img/2017-08-21-add-blog-on-google-search-console/4.png" alt="4" /></p>
+      </li>
+      <li>
+        <p>정상적으로 업로드 되었는지 확인합니다.</p>
+
+        <p><img src="http://localhost:4000/img/2017-08-21-add-blog-on-google-search-console/5.png" alt="5" /></p>
+      </li>
+      <li>
+        <p>웹사이트 소유권을 인증합니다.</p>
+
+        <p><img src="http://localhost:4000/img/2017-08-21-add-blog-on-google-search-console/6.png" alt="6" /></p>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>Sitemap을 작성하여 포스트가 검색에 포함되도록 설정합니다.</p>
+
+    <ul>
+      <li>
+        <p>아래와 같이 <a href="http://localhost:4000/downlaod/2017-08-21-add-blog-on-google-search-console/sitemap.xml">sitemap.xml</a> 을 작성합니다.</p>
+
+        <p><img src="http://localhost:4000/img/2017-08-21-add-blog-on-google-search-console/7.png" alt="7" /></p>
+      </li>
+      <li>
+        <p>sitemap.xml을 Jekyll 프로젝트의 루트 폴더에 추가합니다.</p>
+
+        <p><img src="http://localhost:4000/img/2017-08-21-add-blog-on-google-search-console/8.png" alt="8" /></p>
+      </li>
+      <li>
+        <p>sitemap.xml이 정상 작동하는 지 확인합니다.</p>
+
+        <p><img src="http://localhost:4000/img/2017-08-21-add-blog-on-google-search-console/9.png" alt="9" /></p>
+      </li>
+      <li>
+        <p><a href="https://www.google.com/webmasters/tools/home?hl=ko">Google Search Home</a>에서 추가한 사이트를 선택합니다.</p>
+
+        <p><img src="http://localhost:4000/img/2017-08-21-add-blog-on-google-search-console/10.png" alt="10" /></p>
+      </li>
+      <li>
+        <p>Sitemaps 관리 페이지로 진입합니다.</p>
+
+        <p><img src="http://localhost:4000/img/2017-08-21-add-blog-on-google-search-console/11.png" alt="11" /></p>
+      </li>
+      <li>
+        <p>SITEMAP 추가/테스트를 눌러 테스트를 진행합니다.</p>
+
+        <p><img src="http://localhost:4000/img/2017-08-21-add-blog-on-google-search-console/12.png" alt="12" /></p>
+
+        <p><img src="http://localhost:4000/img/2017-08-21-add-blog-on-google-search-console/13.png" alt="13" /></p>
+
+        <p><img src="http://localhost:4000/img/2017-08-21-add-blog-on-google-search-console/14.png" alt="14" /></p>
+
+        <p><img src="http://localhost:4000/img/2017-08-21-add-blog-on-google-search-console/15.png" alt="15" /></p>
+      </li>
+      <li>
+        <p>위와 같이 테스트의 결과에 이상이 없다면 sitemap.xml을 추가합니다.</p>
+
+        <p><img src="http://localhost:4000/img/2017-08-21-add-blog-on-google-search-console/12.png" alt="12" /></p>
+
+        <p><img src="http://localhost:4000/img/2017-08-21-add-blog-on-google-search-console/16.png" alt="16" /></p>
+
+        <p><img src="http://localhost:4000/img/2017-08-21-add-blog-on-google-search-console/17.png" alt="17" /></p>
+      </li>
+    </ul>
+  </li>
+</ol>
+:ET

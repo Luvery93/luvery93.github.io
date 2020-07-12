@@ -1,0 +1,66 @@
+I"�
+<ul>
+  <li>
+    <p>아래 그림과 같이 윈도우10의 <strong>오른쪽 클릭</strong>과 <strong>Shift + 오른쪽 클릭</strong> 메뉴에 “여기서 명령창 열기”가 존재하지 않습니다.</p>
+
+    <p><img src="http://localhost:4000/img/2018-10-22-windows10-open-a-command-prompt-in-any-folder-from-the-right-click-context-menu/1.png" alt="1" /></p>
+
+    <p><img src="http://localhost:4000/img/2018-10-22-windows10-open-a-command-prompt-in-any-folder-from-the-right-click-context-menu/2.png" alt="2" /></p>
+  </li>
+  <li>
+    <p>이 때 오른쪽 클릭 메뉴에 관련된 레지스트리를 수정하면 <strong>Shift + 오른쪽 클릭</strong> 메뉴에 “<strong>여기서 명령창 열기</strong>“를 추가할 수 있습니다.</p>
+
+    <ul>
+      <li>
+        <p>추가 : <a href="http://localhost:4000/download/2018-10-22-windows10-open-a-command-prompt-in-any-folder-from-the-right-click-context-menu/add_open_cmd_here_for_windows10.reg">레지스트리 파일</a></p>
+
+        <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Windows Registry Editor Version 5.00
+    
+[HKEY_CLASSES_ROOT\Directory\shell\cmdprompt]
+@="@shell32.dll,-8506"
+"Extended"=""
+"NoWorkingDirectory"=""
+    
+[HKEY_CLASSES_ROOT\Directory\shell\cmdprompt\command]
+@="cmd.exe /s /k pushd \"%V\""
+    
+[HKEY_CLASSES_ROOT\Directory\Background\shell\cmdprompt]
+@="@shell32.dll,-8506"
+"Extended"=""
+"NoWorkingDirectory"=""
+    
+[HKEY_CLASSES_ROOT\Directory\Background\shell\cmdprompt\command]
+@="cmd.exe /s /k pushd \"%V\""
+    
+[HKEY_CLASSES_ROOT\Drive\shell\cmdprompt]
+@="@shell32.dll,-8506"
+"Extended"=""
+"NoWorkingDirectory"=""
+    
+[HKEY_CLASSES_ROOT\Drive\shell\cmdprompt\command]
+@="cmd.exe /s /k pushd \"%V\""
+    
+</code></pre></div>        </div>
+      </li>
+      <li>
+        <p>복원 : <a href="http://localhost:4000/download/2018-10-22-windows10-open-a-command-prompt-in-any-folder-from-the-right-click-context-menu/restore_open_cmd_here_for_windows10.reg">레지스트리 파일</a></p>
+
+        <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Windows Registry Editor Version 5.00
+    
+[-HKEY_CLASSES_ROOT\Directory\shell\cmdprompt]
+    
+[-HKEY_CLASSES_ROOT\Directory\Background\shell\cmdprompt]
+    
+[-HKEY_CLASSES_ROOT\Drive\shell\cmdprompt]
+    
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>그 결과 아래와 같이 <strong>Shift + 오른쪽 클릭 메뉴</strong>에 “<strong>여기서 명령창 열기</strong>“가 추가되었음을 확인할 수 있습니다.</p>
+
+    <p><img src="http://localhost:4000/img/2018-10-22-windows10-open-a-command-prompt-in-any-folder-from-the-right-click-context-menu/3.png" alt="3" /></p>
+  </li>
+</ul>
+:ET

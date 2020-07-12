@@ -1,0 +1,229 @@
+I"�<ul>
+  <li>
+    <p><a href="https://www.acmicpc.net/problem/13460">문제</a></p>
+
+    <p><img src="http://localhost:4000/img/2018-11-25-boj-13460/1.png" alt="1" /></p>
+  </li>
+  <li>
+    <p>고민</p>
+
+    <p>n x m 위의 보드에서 구슬을 움직이면서 최소 몇번만에 빨간 구슬을 구멍에 넣을 수 있는지 확인하는 문제이기 때문에 bfs로 완전 탐색을 하면될 것 같았다. 다만 구슬이 움직이는 방향과 순서가 중요했다. 위, 아래, 오른쪽, 왼쪽 방향으로 움직임이 때문에 빨간 구슬과 파란 구슬의 좌표를 이용해 우선 움직여야 하는 구슬을 정하여 움직이도록 했다.  파란구슬이 구멍에 빠진 경우는 더이상 시뮬레이션할 필요가 없으므로 다음 행동을 큐에 넣지 않았고, 맨 처음 빨간구슬만 구멍에 빠진 경우가 생길 경우 최소 횟수이므로 정답을 출력했다. 모든 방향으로 구슬을 움직였을 때 이전 위치와 동일한 위치에 있으면 최소 횟수가 될 수 없으므로 구슬이 움직였을 경우에만 다음 행동을 큐에 넣었다.</p>
+  </li>
+  <li>
+    <p><a href="https://github.com/Luvery93/Problem-Solving/blob/master/BOJ/13460.cpp">코드</a></p>
+
+    <div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include &lt;iostream&gt;
+#include &lt;queue&gt;
+#include &lt;tuple&gt;
+</span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+  
+<span class="kt">char</span> <span class="n">map</span><span class="p">[</span><span class="mi">11</span><span class="p">][</span><span class="mi">11</span><span class="p">];</span>
+  
+<span class="kt">int</span> <span class="n">dx</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span> <span class="p">};</span>
+<span class="kt">int</span> <span class="n">dy</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span> <span class="p">};</span>
+  
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+	<span class="n">ios</span><span class="o">::</span><span class="n">sync_with_stdio</span><span class="p">(</span><span class="nb">false</span><span class="p">);</span>
+	<span class="n">cin</span><span class="p">.</span><span class="n">tie</span><span class="p">(</span><span class="nb">NULL</span><span class="p">);</span>
+	<span class="kt">int</span> <span class="n">n</span><span class="p">,</span> <span class="n">m</span><span class="p">;</span>
+	<span class="kt">int</span> <span class="n">rx</span><span class="p">,</span> <span class="n">ry</span><span class="p">,</span> <span class="n">bx</span><span class="p">,</span> <span class="n">by</span><span class="p">,</span> <span class="n">gx</span><span class="p">,</span> <span class="n">gy</span><span class="p">;</span>
+	<span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">n</span> <span class="o">&gt;&gt;</span> <span class="n">m</span><span class="p">;</span>
+	<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+		<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;=</span> <span class="n">m</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+			<span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">map</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">];</span>
+			<span class="k">if</span> <span class="p">(</span><span class="n">map</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">==</span> <span class="sc">'R'</span><span class="p">)</span> <span class="p">{</span>
+				<span class="n">rx</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span>
+				<span class="n">ry</span> <span class="o">=</span> <span class="n">j</span><span class="p">;</span>
+			<span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span> <span class="n">map</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">==</span> <span class="sc">'B'</span> <span class="p">){</span>
+				<span class="n">bx</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span>
+				<span class="n">by</span> <span class="o">=</span> <span class="n">j</span><span class="p">;</span>
+			<span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">map</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">==</span> <span class="sc">'O'</span><span class="p">)</span> <span class="p">{</span>
+				<span class="n">gx</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span>
+				<span class="n">gy</span> <span class="o">=</span> <span class="n">j</span><span class="p">;</span>
+			<span class="p">}</span>
+		<span class="p">}</span>
+	<span class="p">}</span>
+  
+	<span class="kt">int</span> <span class="n">ans</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+	<span class="n">queue</span><span class="o">&lt;</span><span class="n">tuple</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span> <span class="kt">int</span><span class="p">,</span> <span class="kt">int</span><span class="p">,</span> <span class="kt">int</span><span class="p">,</span> <span class="kt">int</span><span class="o">&gt;&gt;</span> <span class="n">q</span><span class="p">;</span>
+	<span class="n">q</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">make_tuple</span><span class="p">(</span> <span class="n">rx</span><span class="p">,</span> <span class="n">ry</span><span class="p">,</span> <span class="n">bx</span><span class="p">,</span> <span class="n">by</span><span class="p">,</span> <span class="mi">1</span> <span class="p">));</span>
+	<span class="k">while</span> <span class="p">(</span><span class="o">!</span><span class="n">q</span><span class="p">.</span><span class="n">empty</span><span class="p">())</span> <span class="p">{</span>
+		<span class="kt">int</span> <span class="n">crx</span> <span class="o">=</span> <span class="n">get</span><span class="o">&lt;</span><span class="mi">0</span><span class="o">&gt;</span><span class="p">(</span><span class="n">q</span><span class="p">.</span><span class="n">front</span><span class="p">());</span>
+		<span class="kt">int</span> <span class="n">cry</span> <span class="o">=</span> <span class="n">get</span><span class="o">&lt;</span><span class="mi">1</span><span class="o">&gt;</span><span class="p">(</span><span class="n">q</span><span class="p">.</span><span class="n">front</span><span class="p">());</span>
+		<span class="kt">int</span> <span class="n">cbx</span> <span class="o">=</span> <span class="n">get</span><span class="o">&lt;</span><span class="mi">2</span><span class="o">&gt;</span><span class="p">(</span><span class="n">q</span><span class="p">.</span><span class="n">front</span><span class="p">());</span>
+		<span class="kt">int</span> <span class="n">cby</span> <span class="o">=</span> <span class="n">get</span><span class="o">&lt;</span><span class="mi">3</span><span class="o">&gt;</span><span class="p">(</span><span class="n">q</span><span class="p">.</span><span class="n">front</span><span class="p">());</span>
+		<span class="kt">int</span> <span class="n">count</span> <span class="o">=</span> <span class="n">get</span><span class="o">&lt;</span><span class="mi">4</span><span class="o">&gt;</span><span class="p">(</span><span class="n">q</span><span class="p">.</span><span class="n">front</span><span class="p">());</span>
+		<span class="n">q</span><span class="p">.</span><span class="n">pop</span><span class="p">();</span>
+		<span class="k">if</span> <span class="p">(</span><span class="n">count</span> <span class="o">&gt;</span> <span class="mi">10</span><span class="p">)</span> <span class="p">{</span>
+			<span class="n">ans</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+			<span class="k">break</span><span class="p">;</span>
+		<span class="p">}</span>
+		<span class="kt">bool</span> <span class="n">isAnswer</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
+		<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">k</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">k</span> <span class="o">&lt;</span> <span class="mi">4</span><span class="p">;</span> <span class="n">k</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+			<span class="kt">int</span> <span class="n">ncrx</span> <span class="o">=</span> <span class="n">crx</span> <span class="o">+</span> <span class="n">dx</span><span class="p">[</span><span class="n">k</span><span class="p">];</span>
+			<span class="kt">int</span> <span class="n">ncry</span> <span class="o">=</span> <span class="n">cry</span> <span class="o">+</span> <span class="n">dy</span><span class="p">[</span><span class="n">k</span><span class="p">];</span>
+			<span class="kt">int</span> <span class="n">ncbx</span> <span class="o">=</span> <span class="n">cbx</span> <span class="o">+</span> <span class="n">dx</span><span class="p">[</span><span class="n">k</span><span class="p">];</span>
+			<span class="kt">int</span> <span class="n">ncby</span> <span class="o">=</span> <span class="n">cby</span> <span class="o">+</span> <span class="n">dy</span><span class="p">[</span><span class="n">k</span><span class="p">];</span>
+  
+			<span class="kt">bool</span> <span class="n">isRholl</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
+			<span class="kt">bool</span> <span class="n">isBholl</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
+			<span class="kt">bool</span> <span class="n">redfirst</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
+  
+			<span class="k">if</span> <span class="p">(</span><span class="n">k</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">crx</span> <span class="o">&lt;</span> <span class="n">cbx</span><span class="p">)</span> <span class="p">{</span>
+				<span class="n">redfirst</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+			<span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">k</span> <span class="o">==</span> <span class="mi">1</span> <span class="o">&amp;&amp;</span> <span class="n">crx</span> <span class="o">&gt;</span> <span class="n">cbx</span><span class="p">)</span> <span class="p">{</span>
+				<span class="n">redfirst</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+			<span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span> <span class="n">k</span> <span class="o">==</span> <span class="mi">2</span> <span class="o">&amp;&amp;</span> <span class="n">cry</span> <span class="o">&lt;</span> <span class="n">cby</span> <span class="p">){</span>
+				<span class="n">redfirst</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+			<span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">k</span> <span class="o">==</span> <span class="mi">3</span> <span class="o">&amp;&amp;</span> <span class="n">cry</span> <span class="o">&gt;</span> <span class="n">cby</span><span class="p">)</span> <span class="p">{</span>
+				<span class="n">redfirst</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+			<span class="p">}</span>
+  
+			<span class="n">map</span><span class="p">[</span><span class="n">crx</span><span class="p">][</span><span class="n">cry</span><span class="p">]</span> <span class="o">=</span> <span class="sc">'R'</span><span class="p">;</span>
+			<span class="n">map</span><span class="p">[</span><span class="n">cbx</span><span class="p">][</span><span class="n">cby</span><span class="p">]</span> <span class="o">=</span> <span class="sc">'B'</span><span class="p">;</span>
+			<span class="k">if</span> <span class="p">(</span><span class="n">redfirst</span><span class="p">)</span> <span class="p">{</span>
+				<span class="k">if</span> <span class="p">(</span><span class="n">map</span><span class="p">[</span><span class="n">ncrx</span><span class="p">][</span><span class="n">ncry</span><span class="p">]</span> <span class="o">==</span> <span class="sc">'.'</span><span class="p">)</span> <span class="p">{</span>
+					<span class="k">while</span> <span class="p">(</span><span class="n">map</span><span class="p">[</span><span class="n">ncrx</span><span class="p">][</span><span class="n">ncry</span><span class="p">]</span> <span class="o">==</span> <span class="sc">'.'</span><span class="p">)</span> <span class="p">{</span>
+						<span class="n">ncrx</span> <span class="o">+=</span> <span class="n">dx</span><span class="p">[</span><span class="n">k</span><span class="p">];</span>
+						<span class="n">ncry</span> <span class="o">+=</span> <span class="n">dy</span><span class="p">[</span><span class="n">k</span><span class="p">];</span>
+						<span class="k">if</span> <span class="p">(</span><span class="n">map</span><span class="p">[</span><span class="n">ncrx</span><span class="p">][</span><span class="n">ncry</span><span class="p">]</span> <span class="o">==</span> <span class="sc">'O'</span><span class="p">)</span> <span class="p">{</span>
+							<span class="n">isRholl</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+							<span class="k">break</span><span class="p">;</span>
+						<span class="p">}</span>
+					<span class="p">}</span>
+					<span class="k">if</span> <span class="p">(</span><span class="n">isRholl</span><span class="p">)</span> <span class="p">{</span>
+						<span class="n">map</span><span class="p">[</span><span class="n">crx</span><span class="p">][</span><span class="n">cry</span><span class="p">]</span> <span class="o">=</span> <span class="sc">'.'</span><span class="p">;</span>
+					<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+						<span class="n">ncrx</span> <span class="o">-=</span> <span class="n">dx</span><span class="p">[</span><span class="n">k</span><span class="p">];</span>
+						<span class="n">ncry</span> <span class="o">-=</span> <span class="n">dy</span><span class="p">[</span><span class="n">k</span><span class="p">];</span>
+						<span class="n">map</span><span class="p">[</span><span class="n">crx</span><span class="p">][</span><span class="n">cry</span><span class="p">]</span> <span class="o">=</span> <span class="sc">'.'</span><span class="p">;</span>
+						<span class="n">map</span><span class="p">[</span><span class="n">ncrx</span><span class="p">][</span><span class="n">ncry</span><span class="p">]</span> <span class="o">=</span> <span class="sc">'R'</span><span class="p">;</span>
+					<span class="p">}</span>
+				<span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">map</span><span class="p">[</span><span class="n">ncrx</span><span class="p">][</span><span class="n">ncry</span><span class="p">]</span> <span class="o">==</span> <span class="sc">'O'</span><span class="p">)</span> <span class="p">{</span>
+					<span class="n">isRholl</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+					<span class="n">map</span><span class="p">[</span><span class="n">crx</span><span class="p">][</span><span class="n">cry</span><span class="p">]</span> <span class="o">=</span> <span class="sc">'.'</span><span class="p">;</span>
+				<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+					<span class="n">ncrx</span> <span class="o">=</span> <span class="n">crx</span><span class="p">;</span>
+					<span class="n">ncry</span> <span class="o">=</span> <span class="n">cry</span><span class="p">;</span>
+				<span class="p">}</span>
+  
+				<span class="k">if</span> <span class="p">(</span><span class="n">map</span><span class="p">[</span><span class="n">ncbx</span><span class="p">][</span><span class="n">ncby</span><span class="p">]</span> <span class="o">==</span> <span class="sc">'.'</span><span class="p">)</span> <span class="p">{</span>
+					<span class="k">while</span> <span class="p">(</span><span class="n">map</span><span class="p">[</span><span class="n">ncbx</span><span class="p">][</span><span class="n">ncby</span><span class="p">]</span> <span class="o">==</span> <span class="sc">'.'</span><span class="p">)</span> <span class="p">{</span>
+						<span class="n">ncbx</span> <span class="o">+=</span> <span class="n">dx</span><span class="p">[</span><span class="n">k</span><span class="p">];</span>
+						<span class="n">ncby</span> <span class="o">+=</span> <span class="n">dy</span><span class="p">[</span><span class="n">k</span><span class="p">];</span>
+						<span class="k">if</span> <span class="p">(</span><span class="n">map</span><span class="p">[</span><span class="n">ncbx</span><span class="p">][</span><span class="n">ncby</span><span class="p">]</span> <span class="o">==</span> <span class="sc">'O'</span><span class="p">)</span> <span class="p">{</span>
+							<span class="n">isBholl</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+							<span class="k">break</span><span class="p">;</span>
+						<span class="p">}</span>
+					<span class="p">}</span>
+					<span class="k">if</span> <span class="p">(</span><span class="n">isBholl</span><span class="p">)</span> <span class="p">{</span>
+						<span class="n">map</span><span class="p">[</span><span class="n">cbx</span><span class="p">][</span><span class="n">cby</span><span class="p">]</span> <span class="o">=</span> <span class="sc">'.'</span><span class="p">;</span>
+					<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+						<span class="n">ncbx</span> <span class="o">-=</span> <span class="n">dx</span><span class="p">[</span><span class="n">k</span><span class="p">];</span>
+						<span class="n">ncby</span> <span class="o">-=</span> <span class="n">dy</span><span class="p">[</span><span class="n">k</span><span class="p">];</span>
+						<span class="n">map</span><span class="p">[</span><span class="n">cbx</span><span class="p">][</span><span class="n">cby</span><span class="p">]</span> <span class="o">=</span> <span class="sc">'.'</span><span class="p">;</span>
+						<span class="n">map</span><span class="p">[</span><span class="n">ncbx</span><span class="p">][</span><span class="n">ncby</span><span class="p">]</span> <span class="o">=</span> <span class="sc">'B'</span><span class="p">;</span>
+					<span class="p">}</span>
+				<span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">map</span><span class="p">[</span><span class="n">ncbx</span><span class="p">][</span><span class="n">ncby</span><span class="p">]</span> <span class="o">==</span> <span class="sc">'O'</span><span class="p">)</span> <span class="p">{</span>
+					<span class="n">isBholl</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+					<span class="n">map</span><span class="p">[</span><span class="n">cbx</span><span class="p">][</span><span class="n">cby</span><span class="p">]</span> <span class="o">=</span> <span class="sc">'.'</span><span class="p">;</span>
+				<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+					<span class="n">ncbx</span> <span class="o">=</span> <span class="n">cbx</span><span class="p">;</span>
+					<span class="n">ncby</span> <span class="o">=</span> <span class="n">cby</span><span class="p">;</span>
+				<span class="p">}</span>
+			<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+				<span class="k">if</span> <span class="p">(</span><span class="n">map</span><span class="p">[</span><span class="n">ncbx</span><span class="p">][</span><span class="n">ncby</span><span class="p">]</span> <span class="o">==</span> <span class="sc">'.'</span><span class="p">)</span> <span class="p">{</span>
+					<span class="k">while</span> <span class="p">(</span><span class="n">map</span><span class="p">[</span><span class="n">ncbx</span><span class="p">][</span><span class="n">ncby</span><span class="p">]</span> <span class="o">==</span> <span class="sc">'.'</span><span class="p">)</span> <span class="p">{</span>
+						<span class="n">ncbx</span> <span class="o">+=</span> <span class="n">dx</span><span class="p">[</span><span class="n">k</span><span class="p">];</span>
+						<span class="n">ncby</span> <span class="o">+=</span> <span class="n">dy</span><span class="p">[</span><span class="n">k</span><span class="p">];</span>
+						<span class="k">if</span> <span class="p">(</span><span class="n">map</span><span class="p">[</span><span class="n">ncbx</span><span class="p">][</span><span class="n">ncby</span><span class="p">]</span> <span class="o">==</span> <span class="sc">'O'</span><span class="p">)</span> <span class="p">{</span>
+							<span class="n">isBholl</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+							<span class="k">break</span><span class="p">;</span>
+						<span class="p">}</span>
+					<span class="p">}</span>
+					<span class="k">if</span> <span class="p">(</span><span class="n">isBholl</span><span class="p">)</span> <span class="p">{</span>
+						<span class="n">map</span><span class="p">[</span><span class="n">cbx</span><span class="p">][</span><span class="n">cby</span><span class="p">]</span> <span class="o">=</span> <span class="sc">'.'</span><span class="p">;</span>
+					<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+						<span class="n">ncbx</span> <span class="o">-=</span> <span class="n">dx</span><span class="p">[</span><span class="n">k</span><span class="p">];</span>
+						<span class="n">ncby</span> <span class="o">-=</span> <span class="n">dy</span><span class="p">[</span><span class="n">k</span><span class="p">];</span>
+						<span class="n">map</span><span class="p">[</span><span class="n">cbx</span><span class="p">][</span><span class="n">cby</span><span class="p">]</span> <span class="o">=</span> <span class="sc">'.'</span><span class="p">;</span>
+						<span class="n">map</span><span class="p">[</span><span class="n">ncbx</span><span class="p">][</span><span class="n">ncby</span><span class="p">]</span> <span class="o">=</span> <span class="sc">'B'</span><span class="p">;</span>
+					<span class="p">}</span>
+				<span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">map</span><span class="p">[</span><span class="n">ncbx</span><span class="p">][</span><span class="n">ncby</span><span class="p">]</span> <span class="o">==</span> <span class="sc">'O'</span><span class="p">)</span> <span class="p">{</span>
+					<span class="n">isBholl</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+					<span class="n">map</span><span class="p">[</span><span class="n">cbx</span><span class="p">][</span><span class="n">cby</span><span class="p">]</span> <span class="o">=</span> <span class="sc">'.'</span><span class="p">;</span>
+				<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+					<span class="n">ncbx</span> <span class="o">=</span> <span class="n">cbx</span><span class="p">;</span>
+					<span class="n">ncby</span> <span class="o">=</span> <span class="n">cby</span><span class="p">;</span>
+				<span class="p">}</span>
+  
+				<span class="k">if</span> <span class="p">(</span><span class="n">map</span><span class="p">[</span><span class="n">ncrx</span><span class="p">][</span><span class="n">ncry</span><span class="p">]</span> <span class="o">==</span> <span class="sc">'.'</span><span class="p">)</span> <span class="p">{</span>
+					<span class="k">while</span> <span class="p">(</span><span class="n">map</span><span class="p">[</span><span class="n">ncrx</span><span class="p">][</span><span class="n">ncry</span><span class="p">]</span> <span class="o">==</span> <span class="sc">'.'</span><span class="p">)</span> <span class="p">{</span>
+						<span class="n">ncrx</span> <span class="o">+=</span> <span class="n">dx</span><span class="p">[</span><span class="n">k</span><span class="p">];</span>
+						<span class="n">ncry</span> <span class="o">+=</span> <span class="n">dy</span><span class="p">[</span><span class="n">k</span><span class="p">];</span>
+						<span class="k">if</span> <span class="p">(</span><span class="n">map</span><span class="p">[</span><span class="n">ncrx</span><span class="p">][</span><span class="n">ncry</span><span class="p">]</span> <span class="o">==</span> <span class="sc">'O'</span><span class="p">)</span> <span class="p">{</span>
+							<span class="n">isRholl</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+							<span class="k">break</span><span class="p">;</span>
+						<span class="p">}</span>
+					<span class="p">}</span>
+					<span class="k">if</span> <span class="p">(</span><span class="n">isRholl</span><span class="p">)</span> <span class="p">{</span>
+						<span class="n">map</span><span class="p">[</span><span class="n">crx</span><span class="p">][</span><span class="n">cry</span><span class="p">]</span> <span class="o">=</span> <span class="sc">'.'</span><span class="p">;</span>
+					<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+						<span class="n">ncrx</span> <span class="o">-=</span> <span class="n">dx</span><span class="p">[</span><span class="n">k</span><span class="p">];</span>
+						<span class="n">ncry</span> <span class="o">-=</span> <span class="n">dy</span><span class="p">[</span><span class="n">k</span><span class="p">];</span>
+						<span class="n">map</span><span class="p">[</span><span class="n">crx</span><span class="p">][</span><span class="n">cry</span><span class="p">]</span> <span class="o">=</span> <span class="sc">'.'</span><span class="p">;</span>
+						<span class="n">map</span><span class="p">[</span><span class="n">ncrx</span><span class="p">][</span><span class="n">ncry</span><span class="p">]</span> <span class="o">=</span> <span class="sc">'R'</span><span class="p">;</span>
+					<span class="p">}</span>
+				<span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">map</span><span class="p">[</span><span class="n">ncrx</span><span class="p">][</span><span class="n">ncry</span><span class="p">]</span> <span class="o">==</span> <span class="sc">'O'</span><span class="p">)</span> <span class="p">{</span>
+					<span class="n">isRholl</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+					<span class="n">map</span><span class="p">[</span><span class="n">crx</span><span class="p">][</span><span class="n">cry</span><span class="p">]</span> <span class="o">=</span> <span class="sc">'.'</span><span class="p">;</span>
+				<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+					<span class="n">ncrx</span> <span class="o">=</span> <span class="n">crx</span><span class="p">;</span>
+					<span class="n">ncry</span> <span class="o">=</span> <span class="n">cry</span><span class="p">;</span>
+				<span class="p">}</span>
+			<span class="p">}</span>
+  
+			<span class="cm">/*if (!isRholl &amp;&amp; !isBholl) {
+				if (ncrx != crx || ncry != cry || ncbx != cbx || ncby != cby) {
+					cout &lt;&lt; "=====================================\n";
+					cout &lt;&lt; count &lt;&lt; '\n';
+					cout &lt;&lt; "red : " &lt;&lt; crx &lt;&lt; ',' &lt;&lt; cry &lt;&lt; " to " &lt;&lt; ncrx &lt;&lt; ',' &lt;&lt; ncry &lt;&lt; '\n';
+					cout &lt;&lt; "blue : " &lt;&lt; cbx &lt;&lt; ',' &lt;&lt; cby &lt;&lt; " to " &lt;&lt; ncbx &lt;&lt; ',' &lt;&lt; ncby &lt;&lt; '\n';
+					for (int i = 1; i &lt;= n; i++) {
+						for (int j = 1; j &lt;= m; j++) {
+							cout &lt;&lt; map[i][j];
+						}
+						cout &lt;&lt; '\n';
+					}
+					cout &lt;&lt; "=====================================\n";
+				}
+			}*/</span>
+  
+			<span class="k">if</span> <span class="p">(</span><span class="n">isRholl</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="n">isBholl</span><span class="p">)</span> <span class="p">{</span>
+				<span class="n">ans</span> <span class="o">=</span> <span class="n">count</span><span class="p">;</span>
+				<span class="n">isAnswer</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+				<span class="k">break</span><span class="p">;</span>
+			<span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">isRholl</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="n">isBholl</span><span class="p">)</span> <span class="p">{</span>
+				<span class="k">if</span> <span class="p">(</span><span class="n">ncrx</span> <span class="o">!=</span> <span class="n">crx</span> <span class="o">||</span> <span class="n">ncry</span> <span class="o">!=</span> <span class="n">cry</span> <span class="o">||</span> <span class="n">ncbx</span> <span class="o">!=</span> <span class="n">cbx</span> <span class="o">||</span> <span class="n">ncby</span> <span class="o">!=</span> <span class="n">cby</span><span class="p">)</span> <span class="p">{</span>
+					<span class="n">q</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">make_tuple</span><span class="p">(</span><span class="n">ncrx</span><span class="p">,</span> <span class="n">ncry</span><span class="p">,</span> <span class="n">ncbx</span><span class="p">,</span> <span class="n">ncby</span><span class="p">,</span> <span class="n">count</span> <span class="o">+</span> <span class="mi">1</span><span class="p">));</span>
+				<span class="p">}</span>
+			<span class="p">}</span>
+  
+			<span class="n">map</span><span class="p">[</span><span class="n">ncrx</span><span class="p">][</span><span class="n">ncry</span><span class="p">]</span> <span class="o">=</span> <span class="sc">'.'</span><span class="p">;</span>
+			<span class="n">map</span><span class="p">[</span><span class="n">ncbx</span><span class="p">][</span><span class="n">ncby</span><span class="p">]</span> <span class="o">=</span> <span class="sc">'.'</span><span class="p">;</span>
+			<span class="n">map</span><span class="p">[</span><span class="n">crx</span><span class="p">][</span><span class="n">cry</span><span class="p">]</span> <span class="o">=</span> <span class="sc">'.'</span><span class="p">;</span>
+			<span class="n">map</span><span class="p">[</span><span class="n">cbx</span><span class="p">][</span><span class="n">cby</span><span class="p">]</span> <span class="o">=</span> <span class="sc">'.'</span><span class="p">;</span>
+			<span class="n">map</span><span class="p">[</span><span class="n">gx</span><span class="p">][</span><span class="n">gy</span><span class="p">]</span> <span class="o">=</span> <span class="sc">'O'</span><span class="p">;</span>
+		<span class="p">}</span>
+		<span class="k">if</span> <span class="p">(</span><span class="n">isAnswer</span><span class="p">)</span> <span class="p">{</span>
+			<span class="k">break</span><span class="p">;</span>
+		<span class="p">}</span>
+	<span class="p">}</span>
+  
+	<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">ans</span> <span class="o">&lt;&lt;</span> <span class="sc">'\n'</span><span class="p">;</span>
+	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
+:ET

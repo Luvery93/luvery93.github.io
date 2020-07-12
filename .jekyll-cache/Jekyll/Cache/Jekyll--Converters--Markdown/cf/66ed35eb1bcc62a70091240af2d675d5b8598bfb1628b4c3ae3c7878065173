@@ -1,0 +1,10 @@
+I"0<p>윈도우클리너(구 KCleaner) 사용 중 연관되는 윈도우 서비스가 닫혀 있어 “서비스를 사용할 수 없거나 서비스와 연관되어 사용 가능한 장치가 없기 때문에 시작할 수 없습니다.” 라는 오류 메시지가 나오면 작동이 안될 경우가 있습니다.</p>
+
+<p>​	<img src="http://localhost:4000/img/2018-01-23-windowscleaner-kcleaner-error/1.png" alt="1" /></p>
+
+<p>이럴 경우에 실행창에 service.msc를 실행 한 뒤 “Windows Management Instrumentataion” 서비스가 중지되었는지 확인하고 실행시킵니다.</p>
+
+<p>​	<img src="http://localhost:4000/img/2018-01-23-windowscleaner-kcleaner-error/2.png" alt="2" /></p>
+
+<p>​	<img src="http://localhost:4000/img/2018-01-23-windowscleaner-kcleaner-error/3.png" alt="3" /></p>
+:ET

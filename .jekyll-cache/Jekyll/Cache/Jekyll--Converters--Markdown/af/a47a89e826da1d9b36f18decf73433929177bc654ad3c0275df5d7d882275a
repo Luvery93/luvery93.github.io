@@ -1,0 +1,46 @@
+I"�<ul>
+  <li>Windows 7 혹은 그 이상 Windows Server 2008 R2 혹은 그 이상의 OS가 필요합니다.
+    <ol>
+      <li>(Windows 7기준) 제어판 - 프로그램 - 프로그램 및 기능에서 Windows 기능 사용/사용 안함을 선택</li>
+      <li>인터넷 정보 서비스(IIS)에 체크한 뒤 설치합니다.</li>
+    </ol>
+  </li>
+  <li><a href="https://docs.microsoft.com/en-us/aspnet/core/publishing/iis">.NET Core Windows Server Hosting</a>을 설치합니다.</li>
+  <li>asp.net core 프로젝트의 Program.cs 파일에 UseIISIntegration() 함수를 확인합니다.</li>
+</ul>
+
+<div class="language-c# highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">using</span> <span class="nn">System.IO</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">Microsoft.AspNetCore.Hosting</span><span class="p">;</span>
+
+<span class="k">namespace</span> <span class="err">{</span><span class="nn">ProjectName</span><span class="p">}</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">class</span> <span class="nc">Program</span>
+    <span class="p">{</span>
+        <span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="nf">Main</span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="kt">var</span> <span class="n">host</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">WebHostBuilder</span><span class="p">()</span>
+                <span class="p">.</span><span class="nf">UseKestrel</span><span class="p">()</span>
+                <span class="p">.</span><span class="nf">UseContentRoot</span><span class="p">(</span><span class="n">Directory</span><span class="p">.</span><span class="nf">GetCurrentDirectory</span><span class="p">())</span>
+                <span class="p">.</span><span class="nf">UseIISIntegration</span><span class="p">()</span>
+                <span class="p">.</span><span class="n">UseStartup</span><span class="p">&lt;</span><span class="n">Startup</span><span class="p">&gt;()</span>
+                <span class="p">.</span><span class="nf">Build</span><span class="p">();</span>
+
+            <span class="n">host</span><span class="p">.</span><span class="nf">Run</span><span class="p">();</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<ul>
+  <li>IIS(인터넷 정보 서비스)관리자를 실행합니다.
+    <ol>
+      <li>사이트 - 웹 사이트 추가 클릭</li>
+      <li>사이트 이름, 실제 경로, 호스트 이름을 입력</li>
+      <li>응용 프로그램 풀 - 응용 프로그램 풀 추가 클릭</li>
+      <li>.NET Framework 버전 = 관리 코드 없음, 파이프라인 모드 - 통합 으로 생성</li>
+      <li>위 웹사이트 기본 설정에서 응용 프로그램 풀을 위 응용프로그램 풀로 변경</li>
+    </ol>
+  </li>
+  <li>IIS에 설정한 실제 경로로 asp.net core 프로젝트를 게시 대상 위치(publish directory), 구성(release) 확인 후 게시합니다.</li>
+</ul>
+:ET

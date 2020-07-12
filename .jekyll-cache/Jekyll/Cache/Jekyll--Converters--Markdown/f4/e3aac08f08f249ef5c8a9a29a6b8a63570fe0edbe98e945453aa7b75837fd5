@@ -1,0 +1,36 @@
+I"�<ol>
+  <li>
+    <p><strong>Jekyll Build</strong> 입력시 에러가 발생함을 확인했습니다.</p>
+
+    <p><img src="http://localhost:4000/img/2017-08-14-Jekyll-Build-error-tzinfo-dependency/1.png" alt="1" /></p>
+  </li>
+  <li>
+    <p><strong>tzinfo</strong>가 없기 떄문에 발생한 오류이므로 <strong>tzinfo</strong>를 설치합니다.</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gem install tzifo
+</code></pre></div>    </div>
+
+    <p><img src="http://localhost:4000/img/2017-08-14-Jekyll-Build-error-tzinfo-dependency/2.png" alt="2" /></p>
+  </li>
+  <li>
+    <p><strong>tzinfo</strong> 설치 이후 <strong>Jekyll Build</strong> 입력을 하여도 오류가 발생합니다.</p>
+
+    <p><img src="http://localhost:4000/img/2017-08-14-Jekyll-Build-error-tzinfo-dependency/3.png" alt="3" /></p>
+  </li>
+  <li>
+    <p><strong>tzinfo-data</strong>가 없기 떄문에 발생한 오류이므로 <strong>tzinfo-data</strong>를 설치합니다</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gem install tzinfo-data
+</code></pre></div>    </div>
+
+    <p><img src="http://localhost:4000/img/2017-08-14-Jekyll-Build-error-tzinfo-dependency/4.png" alt="4" /></p>
+  </li>
+  <li>
+    <p><strong>tzinfo-data</strong> 설치 이후 정상 작동하는 모습을 확인할 수 있습니다.</p>
+
+    <p><img src="http://localhost:4000/img/2017-08-14-Jekyll-Build-error-tzinfo-dependency/5.png" alt="5" /></p>
+
+    <p><img src="http://localhost:4000/img/2017-08-14-Jekyll-Build-error-tzinfo-dependency/6.png" alt="6" /></p>
+  </li>
+</ol>
+:ET

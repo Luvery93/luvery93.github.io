@@ -1,0 +1,161 @@
+I"Q"<hr />
+
+<h3 id="사전-준비">사전 준비</h3>
+
+<ul>
+  <li>이 포스트는 2017-08-11, ASP.NET Core 1.1 기준으로 작성되었습니다.</li>
+  <li>Windows, Visual Studio 2017 환경에서 작성되었습니다.</li>
+  <li>
+    <p>이 포스트는 <a href="https://docs.microsoft.com/ko-kr/ef/core/get-started/aspnetcore/existing-db">asp.net core docs - ASP.NET Core - Existing Database</a>를 기준으로 작성되었습니다.</p>
+
+    <ol>
+      <li><a href="https://www.microsoft.com/net/core#windowscmd">.NET SDK</a>가 설치되어 있지 않는 경우 설치합니다.</li>
+      <li><a href="https://www.visualstudio.com/thank-you-downloading-visual-studio/?sku=community&amp;rel=15">Visual Studio</a>가 설치되어 있지 않는 경우 설치합니다.</li>
+    </ol>
+  </li>
+</ul>
+
+<hr />
+
+<ul>
+  <li>
+    <p>ASP.NET Core 웹 으용 프로그램(.NET Core) 새 프로젝트를 생성합니다.</p>
+
+    <p><img src="http://localhost:4000/img/2017-08-11-connection-asp-dot-net-core-and-mssql-database/1.PNG" alt="1" /></p>
+  </li>
+  <li>
+    <p>템플릿은 <strong>웹 응용 프로그램</strong>을 선택하며 인증 변경에서 <strong>인증 안 함</strong>을 선택합니다.</p>
+
+    <p><img src="http://localhost:4000/img/2017-08-11-connection-asp-dot-net-core-and-mssql-database/2.PNG" alt="2" /></p>
+  </li>
+  <li>
+    <p>프로젝트가 생성 되면 <strong>도구 - NuGet 패키지 관리자 - 패키지 관리자 콘솔</strong>을 엽니다.</p>
+
+    <p><img src="http://localhost:4000/img/2017-08-11-connection-asp-dot-net-core-and-mssql-database/3.png" alt="3" /></p>
+  </li>
+  <li>
+    <p>패키지 관리 콘솔 창에서 아래 패키지를 설치합니다.</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Install-Package Microsoft.EntityFrameworkCore.Tools
+
+Install-Package Microsoft.EntityFrameworkCore.SqlServer
+
+Install-Package Microsoft.EntityFrameworkCore.SqlServer.Degisn
+</code></pre></div>    </div>
+
+    <p><img src="http://localhost:4000/img/2017-08-11-connection-asp-dot-net-core-and-mssql-database/4.png" alt="4" /></p>
+  </li>
+  <li>
+    <p>패키지를 모두 설치하면 <strong>프로젝트 - 종속성 - NuGet</strong> 폴더 아래 패키지가 추가 되어있음을 확인 할 수 있습니다. 이 과정까지 진행했다면 데이터베이스에 연결할 준비가 완료되었습니다.</p>
+
+    <p><img src="http://localhost:4000/img/2017-08-11-connection-asp-dot-net-core-and-mssql-database/5.png" alt="5" /></p>
+  </li>
+  <li>
+    <p>다음은 이번 포스트에 적용하고자 할 테이블 예시입니다.</p>
+
+    <p><img src="http://localhost:4000/img/2017-08-11-connection-asp-dot-net-core-and-mssql-database/6.png" alt="6" /></p>
+
+    <p><img src="http://localhost:4000/img/2017-08-11-connection-asp-dot-net-core-and-mssql-database/7.png" alt="7" /></p>
+  </li>
+  <li>
+    <p>다시 <strong>패키지 관리자 콘솔</strong>에서 위에 예시로 든 데이터베이스를 C# 코드로 스캐폴딩해 옵니다. 아래 명령어를 입력합니다.</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Scaffold-DbContext "Server={Server Address};Database={Database Name};User ID={Database Auth ID};Password={Database Auth Password};" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Models/{Database Name}
+</code></pre></div>    </div>
+
+    <p><img src="http://localhost:4000/img/2017-08-11-connection-asp-dot-net-core-and-mssql-database/8.png" alt="8" /></p>
+  </li>
+  <li>
+    <p>스캐폴딩이 완료되면 Models - {Database Name} 하에 Context 클래스와 테이블 캘래스들이 생성됩니다.</p>
+
+    <p><img src="http://localhost:4000/img/2017-08-11-connection-asp-dot-net-core-and-mssql-database/9.png" alt="9" /></p>
+
+    <p><img src="http://localhost:4000/img/2017-08-11-connection-asp-dot-net-core-and-mssql-database/10.png" alt="10" /></p>
+
+    <p><img src="http://localhost:4000/img/2017-08-11-connection-asp-dot-net-core-and-mssql-database/11.png" alt="11" /></p>
+  </li>
+  <li>
+    <p>생성 된 Context 클래스의 <strong>OnConfiguring</strong> 함수를 삭제하고 생성자를 추가합니다.</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>public MTContext(DbContextOptions&lt;MTContext&gt; options)
+	: base(options)
+{ }
+</code></pre></div>    </div>
+
+    <p><img src="http://localhost:4000/img/2017-08-11-connection-asp-dot-net-core-and-mssql-database/13.png" alt="13" /></p>
+  </li>
+  <li>
+    <p><strong>appsettings.json</strong> 파일에 데이터베이스 연결 정보를 추가합니다.</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>"ConnectionStrings" : {
+	"MT" : {
+    	"ConnectionString" : "Server={Server Address};Database={Database Name};User ID={Database Auth ID};Password={Database Auth Password};"
+	}
+}
+</code></pre></div>    </div>
+
+    <p><img src="http://localhost:4000/img/2017-08-11-connection-asp-dot-net-core-and-mssql-database/14.png" alt="14" /></p>
+  </li>
+  <li>
+    <p><strong>Startup.cs</strong> 에 using 문을 추가합니다.</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>using Microsoft.EntityFrameworkCore;
+using MTGlos.Models.MT;
+</code></pre></div>    </div>
+
+    <p><img src="http://localhost:4000/img/2017-08-11-connection-asp-dot-net-core-and-mssql-database/15.png" alt="15" /></p>
+  </li>
+  <li>
+    <p><strong>Startup.cs</strong> 의 <strong>ConfigureServices</strong> 함수에 아래 문장을 추가합니다.</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>var MTConnection = Configuration["ConnectionStrings:MT:ConnectionString"];
+services.AddDbContext&lt;MTContext&gt;(options =&gt; options.UseSqlServer(MTConnection));
+</code></pre></div>    </div>
+
+    <p><img src="http://localhost:4000/img/2017-08-11-connection-asp-dot-net-core-and-mssql-database/16.png" alt="16" /></p>
+  </li>
+  <li>
+    <p>다음으로 .NET Core의 데이터베이스 CRUD 스캐폴딩을 진행합니다. 우선 <strong>컨트롤러 폴더에 우측 클릭 - 추가 - 스캐폴드 항목 새로 만들기</strong>를 클릭합니다.</p>
+
+    <p><img src="http://localhost:4000/img/2017-08-11-connection-asp-dot-net-core-and-mssql-database/17.png" alt="17" /></p>
+  </li>
+  <li>
+    <p><strong>MVC 종속성 추가</strong> 에서 <strong>Minimal Dependencies</strong> 를 선택합니다.</p>
+
+    <p><img src="http://localhost:4000/img/2017-08-11-connection-asp-dot-net-core-and-mssql-database/18.png" alt="18" /></p>
+  </li>
+  <li>
+    <p>생성 되어 열리는 <strong>ScaffoldingReadMe.txt</strong> 파일은 이미 프로젝트 템플릿에 포함된 내용이므로 추가로 작성할 내용이 없습니다. 다시 <strong>컨트롤러 폴더 우측 클릭 - 추가 - 컨트롤러</strong>를 선택합니다.</p>
+
+    <p><img src="http://localhost:4000/img/2017-08-11-connection-asp-dot-net-core-and-mssql-database/19.png" alt="19" /></p>
+  </li>
+  <li>
+    <p>스캐폴드 추가 메뉴 중 Entity Framework를 사용하며 뷰가 포함된 MVC 컨트롤러를 추가합니다.</p>
+
+    <p><img src="http://localhost:4000/img/2017-08-11-connection-asp-dot-net-core-and-mssql-database/20.png" alt="20" /></p>
+  </li>
+  <li>
+    <p>컨트롤러 추가 에서 모델 클래스는 Models/MT 하의 클래스를 데이터 컨텍스트 클래스는 Models/MT 하의 Context 클래스를 선택합니다.</p>
+
+    <p><img src="http://localhost:4000/img/2017-08-11-connection-asp-dot-net-core-and-mssql-database/21.png" alt="21" /></p>
+
+    <p><img src="http://localhost:4000/img/2017-08-11-connection-asp-dot-net-core-and-mssql-database/22.png" alt="22" /></p>
+  </li>
+  <li>
+    <p>스캐폴딩이 완료되면 각각의 테이블에 대한 컨트롤러와 CRUD 뷰페이지가 생성됩니다.</p>
+
+    <p><img src="http://localhost:4000/img/2017-08-11-connection-asp-dot-net-core-and-mssql-database/23.png" alt="23" /></p>
+  </li>
+  <li>
+    <p>이전 단계까지 마무리 한 뒤, ASP.NET Core를 실행하여 확인합니다.</p>
+
+    <p><img src="http://localhost:4000/img/2017-08-11-connection-asp-dot-net-core-and-mssql-database/24.png" alt="24" /></p>
+
+    <p><img src="http://localhost:4000/img/2017-08-11-connection-asp-dot-net-core-and-mssql-database/25.png" alt="25" /></p>
+
+    <p><img src="http://localhost:4000/img/2017-08-11-connection-asp-dot-net-core-and-mssql-database/27.png" alt="27" /></p>
+
+    <p><img src="http://localhost:4000/img/2017-08-11-connection-asp-dot-net-core-and-mssql-database/28.png" alt="28" /></p>
+  </li>
+</ul>
+:ET

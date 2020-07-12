@@ -1,0 +1,46 @@
+I"�<ol>
+  <li>
+    <p>Disqus</p>
+
+    <ul>
+      <li>Jekyll은 정적 웹사이트이기 때문에 댓글과 같은 동적인 요소를 자체적으로 삽입할 수 없습니다. 따라서 댓글을 포스트마다 붙여주고 마이그레이션까지 가능한 <a href="https://disqus.com/">disqus</a>를 도입합니다.
+        <ol>
+          <li>disqus에 회원가입 하고 난 뒤 GET STARTED, I want to install Disqus on my site 를 순서대로 선택합니다.</li>
+          <li>Create a new site 에서 필수 정보를 입력한 뒤 Create site 버튼을 누릅니다.
+            <ul>
+              <li>Site Owner : 페이지 관리자(자신 계정)</li>
+              <li>Website Name : 웹 사이트 이름</li>
+              <li>Website URL : 웹 사이트 URL</li>
+              <li>Category : 카테고리</li>
+              <li>Language : 언어</li>
+            </ul>
+          </li>
+        </ol>
+      </li>
+      <li>현재 사용중인 renyuanz/lenodis Jekyll 테마는 기본 레이아웃에 disqus 가 포함되어 있으므로 _config.yml 파일에서 disqus_shortname만 설정하면 됩니다. disqus-shortname은 DISQUS Settings - ORGANIZATION Sites - Site Settings - Shortname에 있습니다.</li>
+    </ul>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>disqus-shortname: {개별 disqus shortname}
+</code></pre></div>    </div>
+
+    <ul>
+      <li>disqus 관련 레이아웃 파일은 아래와 같습니다.</li>
+      <li>_config.yml 변수는 site.owner.disqus-shortname 형식으로 호출합니다.</li>
+    </ul>
+
+    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&lt;</span><span class="nx">script</span> <span class="nx">type</span><span class="o">=</span><span class="dl">"</span><span class="s2">text/javascript</span><span class="dl">"</span><span class="o">&gt;</span>
+	<span class="kd">var</span> <span class="nx">disqus_shortname</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">{_config.yml의 disqus-shortname}</span><span class="dl">'</span><span class="p">;</span>
+	<span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+		<span class="kd">var</span> <span class="nx">dsq</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="dl">'</span><span class="s1">script</span><span class="dl">'</span><span class="p">);</span>
+		<span class="nx">dsq</span><span class="p">.</span><span class="nx">type</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">text/javascript</span><span class="dl">'</span><span class="p">;</span>
+		<span class="nx">dsq</span><span class="p">.</span><span class="k">async</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+		<span class="nx">dsq</span><span class="p">.</span><span class="nx">src</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">//</span><span class="dl">'</span> <span class="o">+</span> <span class="nx">disqus_shortname</span> <span class="o">+</span> <span class="dl">'</span><span class="s1">.disqus.com/embed.js</span><span class="dl">'</span><span class="p">;</span>
+		<span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementByTagName</span><span class="p">(</span><span class="dl">'</span><span class="s1">haed</span><span class="dl">'</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+		<span class="o">||</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementByTagName</span><span class="p">(</span><span class="dl">'</span><span class="s1">body</span><span class="dl">'</span><span class="p">)[</span><span class="mi">0</span><span class="p">]).</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">dsq</span><span class="p">);</span>
+	<span class="p">})();</span>
+<span class="o">&lt;</span><span class="sr">/script</span><span class="err">&gt;
+</span></code></pre></div>    </div>
+  </li>
+</ol>
+
+:ET
